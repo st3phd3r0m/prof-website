@@ -1,0 +1,59 @@
+{% extends 'base-calc.html.twig' %}
+
+{% block head %}
+	<meta name="description" content="Calculatrice">
+
+{% endblock %}
+
+{% block title %}La Calculatrice
+{% endblock %}
+
+{% block header %}
+	<div>
+		<h1>La Calculatrice</h1>
+	</div>
+{% endblock %}
+
+{% block body %}
+
+	<div id="calc">
+        <div id="screen">
+            <p id="previoustype"></p>
+            <input id="typed" type="text" readonly="true"></input>
+        </div>
+
+		<div>
+			<div>
+				<span data-touch = "7" >7</span>
+				<span data-touch = "8" >8</span>
+				<span data-touch = "9">9</span>
+				<span data-touch = "/">&divide;</span>		
+			</div>
+			<div>
+				<span data-touch = "4">4</span>
+				<span data-touch = "5">5</span>
+				<span data-touch = "6">6</span>
+				<span data-touch = "*">&times;</span>		
+			</div>
+			<div>
+				<span data-touch = "1">1</span>
+				<span data-touch = "2">2</span>
+				<span data-touch = "3">3</span>
+				<span data-touch = "-">&minus;</span>		
+			</div>
+			<div>
+				<span data-touch = "0">0</span>
+				<span data-touch = ".">.</span>
+				<span data-touch = "C">C</span>
+				<span data-touch = "+">&plus;</span>		
+			</div>
+			<div>
+				<span data-touch = "(">(</span>
+				<span data-touch = ")">)</span>
+				<span data-touch = "=">=</span>		
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

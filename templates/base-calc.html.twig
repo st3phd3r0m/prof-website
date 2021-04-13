@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Stéphane Derom">
+
+        {% block head %}
+        {% endblock %}
+
+        
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+
+
+        {% block stylesheets %}
+        {{ encore_entry_link_tags('appcalc') }}
+        {% endblock %}
+	</head>
+	<body>
+
+        <header>
+            {% block header %}
+            {% endblock %}
+        </header>
+
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+
+        {{ encore_entry_script_tags('appcalc') }}
+        {% block javascripts %}
+        {% endblock %}
+	</body>
+</html>

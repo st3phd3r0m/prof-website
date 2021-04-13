@@ -1,0 +1,86 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}ExperiencesAndEducations{% endblock %}
+
+{% block body %}
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-dark">ExperiencesAndEducations</h1>
+				</div>
+				<!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item">
+							<a href="{{ path('admin') }}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active">Expériences et formation</li>
+					</ol>
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container-fluid -->
+	</div>
+	<!-- /.content-header -->
+
+	<!-- Main content -->
+	<div class="content">
+		<div class="container-fluid">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ experiences_and_education.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>What</th>
+                        <td>{{ experiences_and_education.what }}</td>
+                    </tr>
+                    <tr>
+						<th>Description</th>
+						<td>{{ experiences_and_education.description|raw }}</td>
+					</tr>
+                    <tr>
+                        <th>Work_place</th>
+                        <td>{{ experiences_and_education.workPlace }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de début</th>
+                        <td>{{ experiences_and_education.startDate ? experiences_and_education.startDate|date('d-m-Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de fin</th>
+                        <td>{{ experiences_and_education.endDate ? experiences_and_education.endDate|date('d-m-Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{ experiences_and_education.city }}</td>
+                    </tr>
+                    <tr>
+                        <th>Hyperlink_work_place</th>
+                        <td>{{ experiences_and_education.hyperlinkWorkPlace }}</td>
+                    </tr>
+                    <tr>
+                        <th>Order</th>
+                        <td>{{ experiences_and_education.positionOrder }}</td>
+                    </tr>
+                    <tr>
+                        <th>Expérience ou formation ?</th>
+                        <td>{{ experiences_and_education.xpOrEducation }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="{{ path('experiences_and_educations_index') }}">back to list</a>
+
+            <a href="{{ path('experiences_and_educations_edit', {'id': experiences_and_education.id}) }}">edit</a>
+
+            {{ include('experiences_and_educations/_delete_form.html.twig') }}
+
+		</div>
+	</div>
+{% endblock %}

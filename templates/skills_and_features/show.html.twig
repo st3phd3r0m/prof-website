@@ -1,0 +1,73 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}SkillsAndFeatures{% endblock %}
+
+{% block body %}
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-dark">SkillsAndFeatures</h1>
+				</div>
+				<!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item">
+							<a href="{{ path('admin') }}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active">Atouts et compétences</li>
+					</ol>
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container-fluid -->
+	</div>
+	<!-- /.content-header -->
+
+	<!-- Main content -->
+	<div class="content">
+		<div class="container-fluid">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ skills_and_feature.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>What</th>
+                        <td>{{ skills_and_feature.what }}</td>
+                    </tr>
+                    <tr>
+                        <th>Whatmore</th>
+                        <td>{{ skills_and_feature.whatmore }}</td>
+                    </tr>
+                    <tr>
+                        <th>Rate</th>
+                        <td>{{ skills_and_feature.rate }}</td>
+                    </tr>
+                    <tr>
+						<th>Mots-clés</th>
+						<td>
+							{% for keyWords in skills_and_feature.keywords %}
+								#{{ keyWords }}
+							{% endfor %}
+						</td>
+					</tr>
+                    <tr>
+                        <th>Skill_or_feature</th>
+                        <td>{{ skills_and_feature.skillOrFeature }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="{{ path('skills_and_features_index') }}">back to list</a>
+
+            <a href="{{ path('skills_and_features_edit', {'id': skills_and_feature.id}) }}">edit</a>
+
+            {{ include('skills_and_features/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+# See dos how to configure the bundle: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+liip_imagine:
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    driver: "gd"
+
+    resolvers:
+        default:
+            web_path: ~
+
+    filter_sets:
+        cache: ~
+
+        miniatures:
+            quality: 70
+            filters:
+                thumbnail: { size: [100, 100] }
+                
+        miniatures2:
+            quality: 70
+            filters:
+                thumbnail: { size: [200, 200] }
+
+        min300:
+            quality: 70
+            filters:
+                relative_resize: 
+                    widen: 300 # Shrink/upscale the image to 800px of height, with full quality 

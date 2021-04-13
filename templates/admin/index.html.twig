@@ -1,0 +1,160 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Admin
+{% endblock %}
+
+{% block body %}
+
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-dark">Admin</h1>
+				</div>
+				<!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item">
+							<a href="{{ path('admin') }}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active">Accueil</li>
+					</ol>
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container-fluid -->
+	</div>
+	<!-- /.content-header -->
+
+	<!-- Main content -->
+	<div class="content">
+		<div
+			class="container-fluid">
+
+			<!-- Small boxes (Stat box) -->
+			<div class="row">
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-info">
+						<div class="inner">
+							<h3>{{ nbrCourriels }}</h3>
+							<p>Messages</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-bag"></i>
+						</div>
+						<a href="{{ path('courriels_index') }}" class="small-box-footer">Voir les messages
+							<i class="fas fa-arrow-circle-right"></i>
+						</a>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-warning">
+						<div class="inner">
+							<h3>{{ nbrUsers }}</h3>
+							<p>Utilisateurs</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-bag"></i>
+						</div>
+						<a href="{{ path('user_index') }}" class="small-box-footer">Voir les utilisateurs
+							<i class="fas fa-arrow-circle-right"></i>
+						</a>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-success">
+						<div class="inner">
+							<h3>{{ nbrSkills }}</h3>
+							<p>Atouts et compétences</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-bag"></i>
+						</div>
+						<a href="{{ path('skills_and_features_index') }}" class="small-box-footer">Voir les Atouts et compétences
+							<i class="fas fa-arrow-circle-right"></i>
+						</a>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-success">
+						<div class="inner">
+							<h3>{{ nbrXps }}</h3>
+							<p>Expériences pro et formation</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-bag"></i>
+						</div>
+						<a href="{{ path('experiences_and_educations_index') }}" class="small-box-footer">Voir les Expériences pro et formation
+							<i class="fas fa-arrow-circle-right"></i>
+						</a>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-info">
+						<div class="inner">
+							<h3>{{ nbrPublications }}</h3>
+							<p>Publications</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-bag"></i>
+						</div>
+						<a href="{{ path('publications_index') }}" class="small-box-footer">Voir les Publications
+							<i class="fas fa-arrow-circle-right"></i>
+						</a>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-info">
+						<div class="inner">
+							<h3>{{ nbrWebSites }}</h3>
+							<p>Sites réalisés</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-bag"></i>
+						</div>
+						<a href="{{ path('web_sites_index') }}" class="small-box-footer">Voir les Sites réalisés
+							<i class="fas fa-arrow-circle-right"></i>
+						</a>
+					</div>
+				</div>
+				<!-- ./col -->
+				<div class="col-lg-3 col-6">
+					<!-- small box -->
+					<div class="small-box bg-warning">
+						<div class="inner">
+							<h3>{{ nbrSocNet }}</h3>
+							<p>Réseaux sociaux</p>
+						</div>
+						<div class="icon">
+							<i class="ion ion-bag"></i>
+						</div>
+						<a href="{{ path('social_networks_index') }}" class="small-box-footer">Voir les Réseaux sociaux
+							<i class="fas fa-arrow-circle-right"></i>
+						</a>
+					</div>
+				</div>
+				<!-- ./col -->
+
+
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container-fluid -->
+	</div>
+	<!-- /.content -->
+
+{% endblock %}

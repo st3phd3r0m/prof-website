@@ -1,0 +1,75 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}MiscellaneousElements{% endblock %}
+
+{% block body %}
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-dark">MiscellaneousElements</h1>
+				</div>
+				<!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item">
+							<a href="{{ path('admin') }}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active">Eléments de la page web</li>
+					</ol>
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container-fluid -->
+	</div>
+	<!-- /.content-header -->
+
+	<!-- Main content -->
+	<div class="content">
+		<div class="container-fluid">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Title</th>
+                        <td>{{ miscellaneous_element.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Content</th>
+                        <td>{{ miscellaneous_element.content }}</td>
+                    </tr>
+                    <tr>
+                        <th>Image</th>
+                        <td>
+                            {% if miscellaneous_element.image is not empty %}
+                            <img src="{{ asset('images/'~ miscellaneous_element.image ) | imagine_filter('miniatures') }}" alt="{{ miscellaneous_element.alt }}">
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Alt</th>
+                        <td>
+                            {{ miscellaneous_element.alt }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Update_at</th>
+                        <td>{{ miscellaneous_element.updateAt ? miscellaneous_element.updateAt|date('Y-m-d H:i:s') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Is_aside</th>
+                        <td>{{ miscellaneous_element.isAside ? 'Yes' : 'No' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="{{ path('miscellaneous_elements_index') }}">back to list</a>
+
+            <a href="{{ path('miscellaneous_elements_edit', {'id': miscellaneous_element.id}) }}">edit</a>
+
+            {{ include('miscellaneous_elements/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

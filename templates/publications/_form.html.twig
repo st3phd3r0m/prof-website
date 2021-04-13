@@ -1,0 +1,32 @@
+{{ form_start(form) }}
+
+{{ form_row(form.title) }}
+{{ form_row(form.editor) }}
+{{ form_row(form.hyperlink) }}
+{{ form_row(form.published_at) }}
+{{ form_row(form.alt) }}
+{{ form_row(form.imageFile) }}
+
+<fieldset class="form-group">
+    <legend class="col-form-label">{{ form.authors.vars.label }}</legend>
+        <div id="{{ form.authors.vars.id }}">
+
+            <ul id="authors-fields-list" data-prototype="{{ form_widget(form.authors.vars.prototype)|e }}" data-widget-tags="{{ '<li></li>'|e }}" data-widget-counter="{{ form.authors|length }}">
+                {% for authorsField in form.authors %}
+                    <li>
+                        <a href="#" class="ml-5">Retirer l'auteur de la publication ?</a>
+                        {{ form_errors(authorsField) }}
+                        {{ form_widget(authorsField) }}
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <button type="button" class="add-another-author-collection-widget" data-list-selector="#authors-fields-list"><i class="fas fa-plus"></i> Ajouter un auteur
+        </button>
+
+</fieldset>
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
