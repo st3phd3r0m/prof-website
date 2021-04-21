@@ -2,6 +2,7 @@
 ###> symfony/framework-bundle ###
 .env
 vraisite.env
+vraisite.text
 /.env
 .env.test
 /.env.test

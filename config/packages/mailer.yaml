@@ -1,3 +1,4 @@
 framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
+        # dsn: smtp://%env(emailuser)%@%env(emaildomain)%.fr:%env(emailsecret)%@ssl0.ovh.net
