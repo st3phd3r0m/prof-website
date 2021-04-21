@@ -134,7 +134,7 @@ body {
 
     main {
 
-        .success, .warning {
+        .success, .form-error-message {
             position: fixed;
             width: 25%;
             border-radius: 5px;
@@ -145,7 +145,7 @@ body {
             transform: translate(-50%,-50%);
         }
 
-        .warning {
+        .form-error-message {
             background-color: rgb(255, 220, 154);
             color: rgb(168, 109, 0);
         }
@@ -153,6 +153,10 @@ body {
         .success {
             background-color: rgb(154, 255, 196);
             color: rgb(0, 144, 72);
+        }
+
+        #comment_sent{
+            display: none;
         }
 
         color: rgb(88, 88, 88);

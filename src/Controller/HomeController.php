@@ -39,7 +39,6 @@ class HomeController extends AbstractController
             $formContact = $this->createForm(CourrielsType::class, $message);
             $formContact->handleRequest($request);
 
-
             //Soumission formulaire réservation/contact
             if ($formContact->isSubmitted() && $formContact->isValid()) {
 

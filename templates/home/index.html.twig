@@ -52,8 +52,9 @@
         <div class="success">{{ message }}</div>
     {% endfor %}
     {% for message in app.flashes('fail') %}
-        <div class="warning">{{ message }}</div>
+        <div class="form-error-message">{{ message }}</div>
     {% endfor %}
+    <div id="email_sent"></div>
 
     <div>
         <aside>

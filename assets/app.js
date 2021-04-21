@@ -13,3 +13,4 @@ import './css/styles.scss';
 // import $ from 'jquery';
 import './js/accordion.js';
 import './js/scroll.js';
+import './js/courrielForm.js';

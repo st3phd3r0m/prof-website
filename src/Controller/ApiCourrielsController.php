@@ -38,12 +38,11 @@ class ApiCourrielsController extends AbstractController
             $form->submit($data);
             if ($form->isSubmitted() && $form->isValid()) {
                 $courriel->setSentAt(new \DateTime('now', new \DateTimeZone('Europe/Paris')));
-
-                
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($courriel);
                 $entityManager->flush();
 
+                
                 return new JsonResponse('Created', 201);
             }
 
