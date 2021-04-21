@@ -36,7 +36,6 @@ class PublicationsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $publication->setUpdatedAt(new \DateTime('now'));
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -74,7 +73,6 @@ class PublicationsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             // $authors = $form->getData()->getAuthors()->toArray();
 
             // foreach ($authors as $value) {
@@ -82,7 +80,7 @@ class PublicationsController extends AbstractController
             // }
 
             $publication->setUpdatedAt(new \DateTime('now'));
-            
+
             $this->getDoctrine()->getManager()->flush();
 
             // foreach ($authors as $value) {
@@ -92,7 +90,7 @@ class PublicationsController extends AbstractController
             //     $entityManager->flush();
             // }
 
-            $miniature = '../public/media/cache/miniatures/images/' . $oldImage;
+            $miniature = '../public/media/cache/miniatures/images/'.$oldImage;
             //On supprime la miniature correspondante à l'image
             if ($filesystem->exists($miniature)) {
                 //Alors on supprime la miniature correspondante

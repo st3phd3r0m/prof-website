@@ -35,10 +35,9 @@ class SkillsAndFeaturesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             //Récupération des mots-clés en tant que chaine de caractères et séparation en array avec un délimiteur "#"
-            $keywords = $form->get("keywords")->getData();
-            $keywords = explode("#", $keywords);
+            $keywords = $form->get('keywords')->getData();
+            $keywords = explode('#', $keywords);
             $keywords = array_filter($keywords);
             $skillsAndFeature->setKeywords($keywords);
 
@@ -74,10 +73,9 @@ class SkillsAndFeaturesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             //Récupération des mots-clés en tant que chaine de caractères et séparation en array avec un délimiteur "#"
-            $keywords = $form->get("keywords")->getData();
-            $keywords = explode("#", $keywords);
+            $keywords = $form->get('keywords')->getData();
+            $keywords = explode('#', $keywords);
             $keywords = array_filter($keywords);
             $skillsAndFeature->setKeywords($keywords);
 

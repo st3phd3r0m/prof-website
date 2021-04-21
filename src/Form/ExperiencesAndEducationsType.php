@@ -25,22 +25,22 @@ class ExperiencesAndEducationsType extends AbstractType
                 'label' => 'What',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir une expérience ou un atout'
-                    ])
-                ]
+                        'message' => 'Veuillez saisir une expérience ou un atout',
+                    ]),
+                ],
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
-                'label' => 'Description'
+                'label' => 'Description',
             ])
             ->add('work_place', TextType::class, [
                 'required' => false,
                 'label' => 'Where',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir l\'organisme de travail'
-                    ])
-                ]
+                        'message' => 'Veuillez saisir l\'organisme de travail',
+                    ]),
+                ],
             ])
             ->add('start_date', DateType::class, [
                 'required' => false,
@@ -55,38 +55,38 @@ class ExperiencesAndEducationsType extends AbstractType
                 'label' => 'Ville/Pays',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir Ville/Pays'
-                    ])
-                ]
+                        'message' => 'Veuillez saisir Ville/Pays',
+                    ]),
+                ],
             ])
             ->add('hyperlink_work_place', UrlType::class, [
                 'required' => false,
                 'label' => 'Lien hypertexte',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir Lien hypertexte'
+                        'message' => 'Veuillez saisir Lien hypertexte',
                     ]),
                     new Url([
-                        'message' => 'Veuillez saisir Lien hypertexte'
-                    ])
-                ]
+                        'message' => 'Veuillez saisir Lien hypertexte',
+                    ]),
+                ],
             ])
             ->add('position_order', NumberType::class, [
                 'required' => true,
                 'label' => 'Ordre d\'apparition',
-                'html5'=>true,
+                'html5' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir un chiffre'
-                    ])
-                ]
+                        'message' => 'Veuillez saisir un chiffre',
+                    ]),
+                ],
             ])
-            ->add('xpOrEducation', ChoiceType::class,[
+            ->add('xpOrEducation', ChoiceType::class, [
                 'label' => 'Expérience ou formation ? ',
                 'required' => true,
-                'choices'  => [
+                'choices' => [
                     'Formation' => 0,
-                    'Expérience' => 1
+                    'Expérience' => 1,
                 ],
             ])
         ;

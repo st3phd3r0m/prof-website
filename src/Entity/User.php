@@ -28,12 +28,10 @@ class User implements UserInterface
      */
     private $lastname;
 
-        
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $occupation;
-
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)

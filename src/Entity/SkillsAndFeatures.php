@@ -94,7 +94,7 @@ class SkillsAndFeatures
 
         return $this;
     }
-    
+
     public function getSkillOrFeature(): ?int
     {
         return $this->skill_or_feature;

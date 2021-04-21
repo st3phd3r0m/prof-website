@@ -24,7 +24,8 @@ class HomeController extends AbstractController
     private $mailer;
     private $userRepository;
 
-    public function __construct(MailerInterface $mailer, UserRepository $userRepository ){
+    public function __construct(MailerInterface $mailer, UserRepository $userRepository)
+    {
         $this->mailer = $mailer;
         $this->userRepository = $userRepository;
     }
@@ -38,39 +39,37 @@ class HomeController extends AbstractController
         ExperiencesAndEducationsRepository $experiencesAndEducationsRepository,
         PublicationsRepository $publicationsRepository, WebSitesRepository $webSitesRepository,
         SocialNetworksRepository $socialNetworksRepository, Request $request
-    ): Response
-    {
+    ): Response {
+            //Instanciation de Messages, création formulaire de contact
+        $message = new Courriels();
+        $formContact = $this->createForm(CourrielsType::class, $message);
+        $formContact->handleRequest($request);
 
-            //Instanciation de Messages, création formulaire de contact 
-            $message = new Courriels();
-            $formContact = $this->createForm(CourrielsType::class, $message);
-            $formContact->handleRequest($request);
+        //Soumission formulaire réservation/contact
+        if ($formContact->isSubmitted() && $formContact->isValid()) {
+            $message->setSentAt(new \DateTime('now'));
 
-            //Soumission formulaire réservation/contact
-            if ($formContact->isSubmitted() && $formContact->isValid()) {
+            //Enregistrement du message en bdd
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($message);
+            $entityManager->flush();
 
-                $message->setSentAt(new \DateTime('now'));
+            //Expedition du message
+            $this->sendEmails($message);
 
-                //Enregistrement du message en bdd
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($message);
-                $entityManager->flush();
+            //Envoi d'un message utilisateur
+            $this->addFlash('success', 'Votre message a bien été envoyé. Je vous répondrai dans les plus brefs délais.');
 
-                //Expedition du message
-                $this->sendEmails($message);
+            return $this->redirectToRoute('home');
+        } elseif ($formContact->isSubmitted() && !$formContact->isValid()) {
+            //Envoi d'un message utilisateur
+            $this->addFlash('fail', 'Votre message n\'a pas pu être envoyé. Formulaire incomplet ou invalide.');
 
-                //Envoi d'un message utilisateur
-                $this->addFlash('success', 'Votre message a bien été envoyé. Je vous répondrai dans les plus brefs délais.');
-                return $this->redirectToRoute('home');
+            return $this->redirectToRoute('home');
+        }
 
-            }elseif ($formContact->isSubmitted() && !$formContact->isValid() ) {
-                //Envoi d'un message utilisateur
-                $this->addFlash('fail', 'Votre message n\'a pas pu être envoyé. Formulaire incomplet ou invalide.');
-                return $this->redirectToRoute('home');
-            }
+        $user = $this->userRepository->findOneBy(['firstname' => 'Stéphane', 'lastname' => 'Derom']);
 
-            $user = $this->userRepository->findOneBy(['firstname'=>'Stéphane', 'lastname'=>'Derom']);
-        
         return $this->render('home/index.html.twig', [
             'miscellaneousElements' => $miscellaneousElementsRepository->findAll(),
             'skillsAndFeatures' => $skillsAndFeaturesRepository->findAll(),
@@ -78,7 +77,7 @@ class HomeController extends AbstractController
             'publications' => $publicationsRepository->findAll(),
             'websites' => $webSitesRepository->findAll(),
             'socialNetworks' => $socialNetworksRepository->findAll(),
-            'me' => $user->getFirstname() .' '.$user->getLastname(),
+            'me' => $user->getFirstname().' '.$user->getLastname(),
             'Adress' => $user->getLocation(),
             'Email' => $user->getEmail(),
             'occupation' => $user->getOccupation(),
@@ -91,8 +90,8 @@ class HomeController extends AbstractController
         //On récupère les emails de tous les administrateurs du site
         $admin_emails = [];
         foreach ($this->userRepository->findAll() as $user) {
-            $role =  $user->getRoles();
-            if (in_array("ROLE_ADMIN", $role)) {
+            $role = $user->getRoles();
+            if (in_array('ROLE_ADMIN', $role)) {
                 $admin_emails[] = $user->getEmail();
             }
         }
@@ -106,7 +105,7 @@ class HomeController extends AbstractController
             //->priority(Email::PRIORITY_HIGH)
             ->subject($courriel->getSubject())
             ->text($courriel->getMessage());
-            // ->html('<p>See Twig integration for better HTML integration!</p>');
+        // ->html('<p>See Twig integration for better HTML integration!</p>');
 
         // $this->mailer->send($email);
 
@@ -115,13 +114,13 @@ class HomeController extends AbstractController
         } catch (TransportExceptionInterface $e) {
             dd($e);
         }
-        
     }
 
     /**
      * @Route("/calculator", name="calculator", methods={"GET"})
      */
-    public function calculator(){
+    public function calculator()
+    {
         return $this->render('home/lacalculatrice.html.twig');
     }
 }

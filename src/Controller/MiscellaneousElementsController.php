@@ -36,7 +36,6 @@ class MiscellaneousElementsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $miscellaneousElement->setUpdateAt(new \DateTime('now'));
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -67,7 +66,6 @@ class MiscellaneousElementsController extends AbstractController
      */
     public function edit(Request $request, MiscellaneousElements $miscellaneousElement, Filesystem $filesystem): Response
     {
-
         //Récupération des noms de fichiers images pour suppression ultérieure des miniatures
         $oldImage = $miscellaneousElement->getImage();
 
@@ -75,12 +73,11 @@ class MiscellaneousElementsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $miscellaneousElement->setUpdateAt(new \DateTime('now'));
 
             $this->getDoctrine()->getManager()->flush();
 
-            $miniature = '../public/media/cache/miniatures/images/' . $oldImage;
+            $miniature = '../public/media/cache/miniatures/images/'.$oldImage;
             //On supprime la miniature correspondante à l'image
             if ($filesystem->exists($miniature)) {
                 //Alors on supprime la miniature correspondante

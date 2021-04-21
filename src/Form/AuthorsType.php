@@ -24,9 +24,9 @@ class AuthorsType extends AbstractType
                     ]),
                     new Length([
                         'min' => 4,
-                        'minMessage' => "Le nom doit comporter au minimum {{ limit }} caractères.",
-                    ])
-                ]
+                        'minMessage' => 'Le nom doit comporter au minimum {{ limit }} caractères.',
+                    ]),
+                ],
             ])
         ;
     }

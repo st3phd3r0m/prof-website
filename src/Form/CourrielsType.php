@@ -24,7 +24,7 @@ class CourrielsType extends AbstractType
             ->add('name', TextType::class, [
                 'required' => true,
                 'label' => false,
-                'attr'=>[
+                'attr' => [
                     'placeholder' => 'Nom',
                     'minlength' => 4,
                     'maxlength' => 20,
@@ -33,7 +33,7 @@ class CourrielsType extends AbstractType
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir vos nom et prénom'
+                        'message' => 'Veuillez saisir vos nom et prénom',
                     ]),
                     new Length([
                         'min' => 4,
@@ -48,27 +48,27 @@ class CourrielsType extends AbstractType
                         'match' => true,
                         'message' => 'Votre nom doit commencer par 4 lettres minimum',
                     ]),
-                ]
+                ],
             ])
             ->add('mail_from', EmailType::class, [
                 'required' => true,
                 'label' => false,
-                'attr'=>[
-                    'placeholder' => 'E-mail'
+                'attr' => [
+                    'placeholder' => 'E-mail',
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir une adresse e-mail valide'
+                        'message' => 'Veuillez saisir une adresse e-mail valide',
                     ]),
                     new Email([
-                        'message' => 'Veuillez saisir une adresse e-mail valide'
-                    ])
-                ]
+                        'message' => 'Veuillez saisir une adresse e-mail valide',
+                    ]),
+                ],
             ])
             ->add('subject', TextType::class, [
                 'required' => true,
                 'label' => false,
-                'attr'=>[
+                'attr' => [
                     'placeholder' => 'Objet de votre message',
                     'minlength' => 4,
                     'maxlength' => 50,
@@ -77,7 +77,7 @@ class CourrielsType extends AbstractType
                 ],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Champs recquis'
+                        'message' => 'Champs recquis',
                     ]),
                     new Length([
                         'min' => 5,
@@ -92,12 +92,12 @@ class CourrielsType extends AbstractType
                         'match' => true,
                         'message' => 'L\'objet de votre message doit commencer par 5 lettres minimum',
                     ]),
-                ]
+                ],
             ])
             ->add('message', TextareaType::class, [
                 'required' => true,
                 'label' => false,
-                'attr'=>[
+                'attr' => [
                     'placeholder' => 'Saisissez votre message',
                     'minlength' => 4,
                     'pattern' => '[A-Za-z]{4,}.{0,}',
@@ -109,24 +109,24 @@ class CourrielsType extends AbstractType
                     ]),
                     new Length([
                         'min' => 10,
-                        'minMessage' => "Votre message doit comporter au moins {{ limit }}
-                        caractères.",
+                        'minMessage' => 'Votre message doit comporter au moins {{ limit }}
+                        caractères.',
                     ]),
                     new Regex([
                         'pattern' => '/^[a-zA-Z]{4,240}/',
                         'match' => true,
                         'message' => 'Votre message doit commencer par 4 lettres minimum',
                     ]),
-                ]
+                ],
             ])
-            ->add('nosiar', HiddenType::class,[
+            ->add('nosiar', HiddenType::class, [
                 'required' => true,
-                'mapped'=>false,
-                'constraints' =>[
+                'mapped' => false,
+                'constraints' => [
                     new Blank([
-                        'message'=>'Le champ doit rester vide.'
-                    ])
-                ]
+                        'message' => 'Le champ doit rester vide.',
+                    ]),
+                ],
             ])
         ;
     }

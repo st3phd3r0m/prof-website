@@ -1,10 +1,9 @@
 <?php
+
 namespace App\Twig;
 
 use App\Repository\WebSitesRepository;
-use Doctrine\Common\Collections\Criteria;
 use Twig\Extension\AbstractExtension;
-
 use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
@@ -25,6 +24,6 @@ class AppExtension extends AbstractExtension
 
     public function numberOfWebSites()
     {
-        return count($this->webSitesRepository->findAll()); 
+        return count($this->webSitesRepository->findAll());
     }
 }

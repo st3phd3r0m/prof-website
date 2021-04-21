@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Courriels;
-use App\Form\CourrielsType;
 use App\Repository\CourrielsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

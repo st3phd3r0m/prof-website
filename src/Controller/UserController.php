@@ -36,7 +36,6 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -64,7 +63,6 @@ class UserController extends AbstractController
     public function changePassword(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         if ($this->getUser()->getUserName() === $user->getUsername()) {
-
             $form = $this->createForm(UserType::class, $user);
             $form->remove('email');
             $form->remove('roles');
@@ -83,9 +81,9 @@ class UserController extends AbstractController
 
                 //Envoi d'un message utilisateur
                 $this->addFlash('success', 'Votre mot de passe a bien été modifié');
-                return $this->redirectToRoute('users_index');
 
-            } else if ($form->isSubmitted() && !$form->isValid()) {
+                return $this->redirectToRoute('users_index');
+            } elseif ($form->isSubmitted() && !$form->isValid()) {
                 //Envoi d'un message utilisateur
                 $this->addFlash('fail', 'Formulaire incomplet ou invalide.');
             }
@@ -98,7 +96,8 @@ class UserController extends AbstractController
         }
 
         //Envoi d'un message utilisateur
-        $this->addFlash('fail', 'Vous devez être connecté en tant que ' . $user->getEmail() . ' pour modifier le mot de passe associé à ce compte.');
+        $this->addFlash('fail', 'Vous devez être connecté en tant que '.$user->getEmail().' pour modifier le mot de passe associé à ce compte.');
+
         return $this->redirectToRoute('user_index');
     }
 

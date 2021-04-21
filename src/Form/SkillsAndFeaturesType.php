@@ -15,7 +15,6 @@ class SkillsAndFeaturesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
             ->add('what', TextType::class, [
                 'required' => true,
@@ -25,7 +24,7 @@ class SkillsAndFeaturesType extends AbstractType
                     new NotBlank([
                         'message' => 'Veuillez saisir une chaine de caractères.',
                     ]),
-                ]
+                ],
             ])
             ->add('whatmore', TextType::class, [
                 'required' => false,
@@ -40,22 +39,22 @@ class SkillsAndFeaturesType extends AbstractType
                 'required' => false,
                 'label' => 'Ajouter des mots-clés, délimités par des hashtags ("#"), afin de référencer vos compétences : ',
                 'mapped' => false,
-                'data' => ($builder->getData()->getKeywords()!= null)? implode('#', $builder->getData()->getKeywords()) : ''
+                'data' => (null != $builder->getData()->getKeywords()) ? implode('#', $builder->getData()->getKeywords()) : '',
             ])
             ->add('rate', RangeType::class, [
                 'label' => 'Pourcentage maitrise atout/compétence : ',
                 'required' => false,
                 'attr' => [
                     'min' => 0,
-                    'max' => 100
-                ]
+                    'max' => 100,
+                ],
             ])
-            ->add('skill_or_feature', ChoiceType::class,[
+            ->add('skill_or_feature', ChoiceType::class, [
                 'label' => 'Atout ou compétence ? ',
                 'required' => true,
-                'choices'  => [
+                'choices' => [
                     'Compétence' => 0,
-                    'Atout' => 1
+                    'Atout' => 1,
                 ],
             ])
         ;

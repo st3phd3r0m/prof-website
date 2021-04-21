@@ -19,8 +19,7 @@ class AdminController extends AbstractController
      */
     public function index(CourrielsRepository $courrielsRepository, UserRepository $userRepository, SkillsAndFeaturesRepository $skillsAndFeaturesRepository, ExperiencesAndEducationsRepository $experiencesAndEducationsRepository, PublicationsRepository $publicationsRepository, WebSitesRepository $webSitesRepository, SocialNetworksRepository $socialNetworksRepository)
     {
-
-        return $this->render('admin/index.html.twig',[
+        return $this->render('admin/index.html.twig', [
             'nbrCourriels' => count($courrielsRepository->findAll()),
             'nbrUsers' => count($userRepository->findAll()),
             'nbrSkills' => count($skillsAndFeaturesRepository->findAll()),

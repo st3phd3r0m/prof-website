@@ -26,39 +26,39 @@ class UserType extends AbstractType
                 'label' => 'Adresse e-mail',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir une adresse e-mail'
+                        'message' => 'Veuillez saisir une adresse e-mail',
                     ]),
                     new Email([
-                        'message' => 'Votre adresse e-mail n\'est pas valide'
-                    ])
-                ]
+                        'message' => 'Votre adresse e-mail n\'est pas valide',
+                    ]),
+                ],
             ])
             ->add('firstname', TextType::class, [
                 'required' => true,
                 'label' => 'Prénom',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir un prénom'
-                    ])
-                ]
+                        'message' => 'Veuillez saisir un prénom',
+                    ]),
+                ],
             ])
             ->add('lastname', TextType::class, [
                 'required' => true,
                 'label' => 'Nom',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir un nom'
-                    ])
-                ]
+                        'message' => 'Veuillez saisir un nom',
+                    ]),
+                ],
             ])
             ->add('occupation', TextType::class, [
                 'required' => true,
                 'label' => '"Métier"',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir un "métier"'
-                    ])
-                ]
+                        'message' => 'Veuillez saisir un "métier"',
+                    ]),
+                ],
             ])
             ->add('roles', ChoiceType::class, [
                 'required' => true,
@@ -67,14 +67,14 @@ class UserType extends AbstractType
                 'multiple' => true,
                 'choices' => [
                     // 'Utilisateur' => 'ROLE_USER',
-                    'Oui' => 'ROLE_ADMIN'
+                    'Oui' => 'ROLE_ADMIN',
                 ],
             ])
             ->add('location', TextType::class, [
                 'required' => false,
                 'label' => 'Adresse : ',
             ])
-            ->add('phone', TelType::class,[
+            ->add('phone', TelType::class, [
                 'required' => false,
                 'label' => 'Numéro de téléphone',
             ])
@@ -86,14 +86,14 @@ class UserType extends AbstractType
                 'second_options' => ['label' => 'Confirmer le mot de passe'],
                 'mapped' => false,
                 'options' => [
-                    'attr' =>[
-                         'class' => 'form-control form-control-lg form-control-a mb-3'
+                    'attr' => [
+                         'class' => 'form-control form-control-lg form-control-a mb-3',
                     ],
                     'label_attr' => [
-                        'class' => 'policeForm'
+                        'class' => 'policeForm',
                     ],
                 ],
-                
+
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Entrez votre mot de passe',
@@ -103,10 +103,8 @@ class UserType extends AbstractType
                         'minMessage' => 'Votre mot de passe doit contenir minimum {{ limit }} caractères',
                         'max' => 4096,
                     ]),
-                    
                 ],
             ]);
-        
     }
 
     public function configureOptions(OptionsResolver $resolver)

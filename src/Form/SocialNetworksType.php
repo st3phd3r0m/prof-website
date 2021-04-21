@@ -41,12 +41,12 @@ class SocialNetworksType extends AbstractType
                 'label' => 'Lien hypertexte',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir Lien hypertexte'
+                        'message' => 'Veuillez saisir Lien hypertexte',
                     ]),
                     new Url([
-                        'message' => 'Veuillez saisir Lien hypertexte'
-                    ])
-                ]
+                        'message' => 'Veuillez saisir Lien hypertexte',
+                    ]),
+                ],
             ])
         ;
     }

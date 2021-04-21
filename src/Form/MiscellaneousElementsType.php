@@ -26,25 +26,25 @@ class MiscellaneousElementsType extends AbstractType
                     new NotBlank([
                         'message' => 'Veuillez saisir un titre.',
                     ]),
-                ]
+                ],
             ])
-            ->add('content', TextareaType::class,[
+            ->add('content', TextareaType::class, [
                 'required' => false,
                 'label' => 'Contenu de l\'élément : ',
             ])
-            ->add('imageFile', VichImageType::class,[
+            ->add('imageFile', VichImageType::class, [
                 'required' => false,
-                'label'=>'Image de présentation',
-                'download_link'=>false,
-                'imagine_pattern'=>'miniatures',
-                'constraints'=>[
+                'label' => 'Image de présentation',
+                'download_link' => false,
+                'imagine_pattern' => 'miniatures',
+                'constraints' => [
                     new Image([
-                        'maxSize'=>'2M',
-                        'maxSizeMessage'=> 'Votre image dépasse les 2Mo',
-                        'mimeTypes'=>['image/webp'],
-                        'mimeTypesMessage'=>'Votre image doit être de type WEBP',
-                    ])
-                ]
+                        'maxSize' => '2M',
+                        'maxSizeMessage' => 'Votre image dépasse les 2Mo',
+                        'mimeTypes' => ['image/webp'],
+                        'mimeTypesMessage' => 'Votre image doit être de type WEBP',
+                    ]),
+                ],
             ])
             ->add('alt', TextType::class, [
                 'required' => true,
@@ -53,11 +53,11 @@ class MiscellaneousElementsType extends AbstractType
                     new NotBlank([
                         'message' => 'Veuillez saisir un texte.',
                     ]),
-                ]
+                ],
             ])
-            ->add('is_aside', CheckboxType::class,[
+            ->add('is_aside', CheckboxType::class, [
                 'required' => false,
-                'label'    => 'Elément de type aside ?',
+                'label' => 'Elément de type aside ?',
             ])
         ;
     }

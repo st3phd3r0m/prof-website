@@ -15,10 +15,8 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class ApiCourrielsController extends AbstractController
 {
-
     private $mailer;
     private $userRepository;
     private CourrielsRepository $courrielsRepository;
@@ -85,15 +83,13 @@ class ApiCourrielsController extends AbstractController
         return new JsonResponse('Method Not Allowed', 405);
     }
 
-
-
     private function sendEmails(Courriels $courriel)
     {
         //On récupère les emails de tous les administrateurs du site
         $admin_emails = [];
         foreach ($this->userRepository->findAll() as $user) {
-            $role =  $user->getRoles();
-            if (in_array("ROLE_ADMIN", $role)) {
+            $role = $user->getRoles();
+            if (in_array('ROLE_ADMIN', $role)) {
                 $admin_emails[] = $user->getEmail();
             }
         }
@@ -107,12 +103,11 @@ class ApiCourrielsController extends AbstractController
             //->priority(Email::PRIORITY_HIGH)
             ->subject($courriel->getSubject())
             ->text($courriel->getMessage());
-            // ->html('<p>See Twig integration for better HTML integration!</p>');
+        // ->html('<p>See Twig integration for better HTML integration!</p>');
 
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
         }
-        
     }
 }
