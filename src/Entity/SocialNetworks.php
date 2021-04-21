@@ -14,21 +14,25 @@ class SocialNetworks
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @var string
      */
     private $logo;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $hyperlink;
 

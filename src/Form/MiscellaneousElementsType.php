@@ -15,6 +15,13 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class MiscellaneousElementsType extends AbstractType
 {
+    /**
+     * Undocumented function
+     *
+     * @param FormBuilderInterface $builder
+     * @param array<string, mixed> $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -62,7 +69,7 @@ class MiscellaneousElementsType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => MiscellaneousElements::class,

@@ -17,8 +17,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ApiCourrielsController extends AbstractController
 {
-    private $mailer;
-    private $userRepository;
+    private MailerInterface $mailer;
+    private UserRepository $userRepository;
     private CourrielsRepository $courrielsRepository;
 
     public function __construct(CourrielsRepository $courrielsRepository, MailerInterface $mailer, UserRepository $userRepository)
@@ -83,7 +83,7 @@ class ApiCourrielsController extends AbstractController
         return new JsonResponse('Method Not Allowed', 405);
     }
 
-    private function sendEmails(Courriels $courriel)
+    private function sendEmails(Courriels $courriel): void
     {
         //On récupère les emails de tous les administrateurs du site
         $admin_emails = [];

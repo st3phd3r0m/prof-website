@@ -17,21 +17,25 @@ class MiscellaneousElements
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @var string
      */
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $image;
 
@@ -46,16 +50,19 @@ class MiscellaneousElements
 
     /**
      * @ORM\Column(type="datetime")
+     * @var \DateTimeInterface
      */
     private $update_at;
 
     /**
      * @ORM\Column(type="boolean")
+     * @var bool
      */
     private $is_aside;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $alt;
 
@@ -135,30 +142,6 @@ class MiscellaneousElements
         return $this;
     }
 
-    public function getLocation(): ?string
-    {
-        return $this->location;
-    }
-
-    public function setLocation(?string $location): self
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
-
-    public function setMail(?string $mail): self
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
     public function getIsAside(): ?bool
     {
         return $this->is_aside;
@@ -167,18 +150,6 @@ class MiscellaneousElements
     public function setIsAside(bool $is_aside): self
     {
         $this->is_aside = $is_aside;
-
-        return $this;
-    }
-
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
-
-    public function setPhone(?string $phone): self
-    {
-        $this->phone = $phone;
 
         return $this;
     }

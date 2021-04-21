@@ -12,6 +12,13 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AuthorsType extends AbstractType
 {
+    /**
+     * Undocumented function
+     *
+     * @param FormBuilderInterface $builder
+     * @param array<string, mixed> $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -31,7 +38,7 @@ class AuthorsType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Authors::class,

@@ -15,14 +15,14 @@ class AppExtension extends AbstractExtension
         ];
     }
 
-    protected $webSitesRepository;
+    protected WebSitesRepository $webSitesRepository;
 
     public function __construct(WebSitesRepository $webSitesRepository)
     {
         $this->webSitesRepository = $webSitesRepository;
     }
 
-    public function numberOfWebSites()
+    public function numberOfWebSites(): int
     {
         return count($this->webSitesRepository->findAll());
     }

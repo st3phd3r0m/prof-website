@@ -15,41 +15,49 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @var string
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @var string
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $occupation;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @var string
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @var array<int, string>
      */
     private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $location;
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
+     * @var string
      */
     private $phone;
 
@@ -124,6 +132,7 @@ class User implements UserInterface
 
     /**
      * @see UserInterface
+     * @return array<int, string>
      */
     public function getRoles(): array
     {
@@ -134,6 +143,12 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param array<int, string> $roles
+     * @return self
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -194,6 +209,6 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        $this->plainPassword = null;
+        // $this->plainPassword = null;
     }
 }

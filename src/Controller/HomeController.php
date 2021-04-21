@@ -21,8 +21,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    private $mailer;
-    private $userRepository;
+    private MailerInterface $mailer;
+    private UserRepository $userRepository;
 
     public function __construct(MailerInterface $mailer, UserRepository $userRepository)
     {
@@ -85,7 +85,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    private function sendEmails(Courriels $courriel)
+    private function sendEmails(Courriels $courriel): void
     {
         //On récupère les emails de tous les administrateurs du site
         $admin_emails = [];
@@ -112,14 +112,13 @@ class HomeController extends AbstractController
         try {
             $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
-            dd($e);
         }
     }
 
     /**
      * @Route("/calculator", name="calculator", methods={"GET"})
      */
-    public function calculator()
+    public function calculator(): Response
     {
         return $this->render('home/lacalculatrice.html.twig');
     }

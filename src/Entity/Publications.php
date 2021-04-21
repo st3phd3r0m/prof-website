@@ -19,16 +19,19 @@ class Publications
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $image;
 
@@ -43,31 +46,37 @@ class Publications
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $editor;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $hyperlink;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @var \DateTimeInterface
      */
     private $published_at;
 
     /**
      * @ORM\Column(type="datetime")
+     * @var \DateTimeInterface
      */
     private $updated_at;
 
     /**
      * @ORM\ManyToMany(targetEntity=Authors::class, inversedBy="publications")
+     * @var Collection|Authors[]
      */
     private $authors;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $alt;
 

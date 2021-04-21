@@ -16,16 +16,19 @@ class Authors
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $name;
 
     /**
      * @ORM\ManyToMany(targetEntity=Publications::class, mappedBy="authors")
+     * @var Collection|Publications[]
      */
     private $publications;
 
