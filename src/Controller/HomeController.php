@@ -21,6 +21,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+    private $mailer;
+    private $userRepository;
+
+    public function __construct(MailerInterface $mailer, UserRepository $userRepository ){
+        $this->mailer = $mailer;
+        $this->userRepository = $userRepository;
+    }
 
     /**
      * @Route("/", name="home", methods={"GET","POST"})
@@ -30,7 +37,7 @@ class HomeController extends AbstractController
         SkillsAndFeaturesRepository $skillsAndFeaturesRepository,
         ExperiencesAndEducationsRepository $experiencesAndEducationsRepository,
         PublicationsRepository $publicationsRepository, WebSitesRepository $webSitesRepository,
-        SocialNetworksRepository $socialNetworksRepository, UserRepository $userRepository, MailerInterface $mailer, Request $request
+        SocialNetworksRepository $socialNetworksRepository, Request $request
     ): Response
     {
 
@@ -50,7 +57,7 @@ class HomeController extends AbstractController
                 $entityManager->flush();
 
                 //Expedition du message
-                $this->sendEmails($message, $mailer, $userRepository);
+                $this->sendEmails($message);
 
                 //Envoi d'un message utilisateur
                 $this->addFlash('success', 'Votre message a bien été envoyé. Je vous répondrai dans les plus brefs délais.');
@@ -62,7 +69,7 @@ class HomeController extends AbstractController
                 return $this->redirectToRoute('home');
             }
 
-            $user = $userRepository->findOneBy(['firstname'=>'Stéphane', 'lastname'=>'Derom']);
+            $user = $this->userRepository->findOneBy(['firstname'=>'Stéphane', 'lastname'=>'Derom']);
         
         return $this->render('home/index.html.twig', [
             'miscellaneousElements' => $miscellaneousElementsRepository->findAll(),
@@ -79,11 +86,11 @@ class HomeController extends AbstractController
         ]);
     }
 
-    private function sendEmails(Courriels $post, MailerInterface $mailer, UserRepository $userRepository )
+    private function sendEmails(Courriels $courriel)
     {
         //On récupère les emails de tous les administrateurs du site
         $admin_emails = [];
-        foreach ($userRepository->findAll() as $user) {
+        foreach ($this->userRepository->findAll() as $user) {
             $role =  $user->getRoles();
             if (in_array("ROLE_ADMIN", $role)) {
                 $admin_emails[] = $user->getEmail();
@@ -91,19 +98,22 @@ class HomeController extends AbstractController
         }
 
         $email = (new Email())
-            ->from($post->getMailFrom())
+            ->from($courriel->getMailFrom())
             ->to($admin_emails[0])
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
-            ->subject($post->getSubject())
-            ->text($post->getMessage());
+            ->subject($courriel->getSubject())
+            ->text($courriel->getMessage());
             // ->html('<p>See Twig integration for better HTML integration!</p>');
 
+        // $this->mailer->send($email);
+
         try {
-            $mailer->send($email);
+            $this->mailer->send($email);
         } catch (TransportExceptionInterface $e) {
+            dd($e);
         }
         
     }

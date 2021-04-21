@@ -21,10 +21,8 @@ function checkField(elementObject) {
         return false;
     } else if (str.length < minLength) {
         return false;
-    } else if (/^[a-zA-Z]{2,240}/.test(str)) {
-        return true;
     }
-    return false;
+    return true;
 }
 
 function onCheckFields() {
@@ -90,12 +88,12 @@ function ajaxCall(formData) {
         response => {
             if (response.status == 201) {
                 fields.val('');
-                $("#email_sent").text('Votre message a bien été envoyé. Je vous répondrai dans les plus brefs délais.').addClass("success").show();
+                $("#email_sent").text('Votre message a bien été envoyé. Je vous répondrai dans les plus brefs délais.').removeClass("form-error-message").addClass("success").show();
                 setTimeout(function () {
                     $("#email_sent").hide();
                 }, 2000);
             } else {
-                $("#email_sent").text('Un problème est surnenu. Le courriel n\'a pas été enregistré.').addClass("form-error-message").show();
+                $("#email_sent").text('Un problème est surnenu. Le courriel n\'a pas été enregistré.').removeClass("success").addClass("form-error-message").show();
                 setTimeout(function () {
                     $("#email_sent").hide();
                 }, 2000);
