@@ -39,6 +39,9 @@ class ApiCourrielsController extends AbstractController
                 return new JsonResponse('Unauthorized', 401);
             }
             $data = (array) json_decode($request->getContent());
+            foreach ($data as $key => $value) {
+                $data[$key] = htmlspecialchars($value);
+            }
             $courriel = new Courriels();
             $form = $this->createForm(CourrielsType::class, $courriel);
             $form->submit($data);

@@ -21,6 +21,8 @@ function checkField(elementObject) {
         return false;
     } else if (str.length < minLength) {
         return false;
+    }  else if ( /[&<>"']/.test(str) ) {
+        return false;
     }
     return true;
 }
@@ -58,10 +60,10 @@ function extractFormData(e) {
     if (this.disabled == false && onCheckFields && _token !="" && nosiar==="") {
         let formData = {};
         for (let field of fields) {
-            formData[field.id.replace('courriels_', '')] = $(field).val();
+            formData[field.id.replace('courriels_', '')] = escapeHtml($(field).val());
         }
-        formData.nosiar = nosiar;
-        formData._token = _token;
+        formData.nosiar = escapeHtml(nosiar);
+        formData._token = escapeHtml(_token);
         ajaxCall(formData);
     }else{
         $("#courriel_sent").text('Un problème est surnenu. Le courriel n\'a pas été enregistré.').addClass("form-error-message").show();
@@ -98,6 +100,19 @@ function ajaxCall(formData) {
                     $("#email_sent").hide();
                 }, 2000);
             }
+            onCheckFields();
         },
     );
+}
+
+function escapeHtml(str) {
+    let map =
+    {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return str.replace(/[&<>"']/g, function (m) { return map[m]; });
 }
