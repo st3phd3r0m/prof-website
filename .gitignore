@@ -1,5 +1,6 @@
 
 ###> symfony/framework-bundle ###
+.gitlab-ci.yml
 .env
 vraisite.env
 vraisite.text
@@ -9,7 +10,7 @@ vraisite.text
 /.env.local
 /.env.local.php
 /.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
+/config/secrets/
 /public/bundles/
 /var/
 /vendor/
@@ -22,12 +23,13 @@ vraisite.text
 ###< symfony/phpunit-bridge ###
 
 ###> liip/imagine-bundle ###
-/public/media/cache/
+/public/media
+/public/images
+/public/.htaccess
 ###< liip/imagine-bundle ###
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
-/public/build/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
