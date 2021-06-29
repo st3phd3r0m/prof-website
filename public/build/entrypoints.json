@@ -2,28 +2,28 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.fbd53cc5.js",
+        "/build/runtime.ddd72fd3.js",
         "/build/710.967a74fd.js",
         "/build/408.c6f6d538.js",
-        "/build/app.83329bc9.js"
+        "/build/app.f0f0160b.js"
       ],
       "css": [
-        "/build/app.228c0ea9.css"
+        "/build/app.7ff1bab2.css"
       ]
     },
     "adminedit": {
       "js": [
-        "/build/runtime.fbd53cc5.js",
+        "/build/runtime.ddd72fd3.js",
         "/build/710.967a74fd.js",
-        "/build/adminedit.0fa25ef7.js"
+        "/build/adminedit.5038192b.js"
       ]
     },
     "adminDeleteCourriels": {
       "js": [
-        "/build/runtime.fbd53cc5.js",
+        "/build/runtime.ddd72fd3.js",
         "/build/710.967a74fd.js",
         "/build/408.c6f6d538.js",
-        "/build/adminDeleteCourriels.af02f766.js"
+        "/build/adminDeleteCourriels.a555bd0a.js"
       ]
     }
   }
