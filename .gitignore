@@ -1,10 +1,12 @@
 
 ###> symfony/framework-bundle ###
 .gitlab-ci.yml
-.env
+docker-compose.yml
+DockerfileNode
+DockerfilePHP-FPM
 vraisite.env
 vraisite.text
-/.env
+/config/php.ini-production
 .env.test
 /.env.test
 /.env.local
@@ -40,3 +42,4 @@ yarn-error.log
 /.php_cs
 /.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
+
