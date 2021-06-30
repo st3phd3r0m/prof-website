@@ -29,6 +29,7 @@ vraisite.text
 /public/media
 /public/images
 /public/.htaccess
+/public/adminlte
 ###< liip/imagine-bundle ###
 
 ###> symfony/webpack-encore-bundle ###
