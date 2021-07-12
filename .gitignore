@@ -8,6 +8,7 @@ vraisite.env
 vraisite.text
 /config/php.ini-production
 /src/DataFixtures/UserFixtures.php
+.env
 .env.test
 /.env.test
 /.env.local
