@@ -1,0 +1,34 @@
+<div class="w3-container">
+
+	<p>
+		<span class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>
+			{% if experienceAndEducation.startDate is defined and experienceAndEducation.endDate is defined %}
+				{% if experienceAndEducation.startDate|date('Y') == experienceAndEducation.endDate|date('Y') %}
+					{{ experienceAndEducation.startDate|date('M Y') }}
+					-
+					{{ experienceAndEducation.endDate|date('M Y') }}
+				{% else %}
+					{{ experienceAndEducation.startDate|date('Y') }}
+					-
+					{{ experienceAndEducation.endDate|date('Y') }}
+				{% endif %}
+			{% else %}
+				{{ experienceAndEducation.startDate ? experienceAndEducation.startDate|date('Y') : '' }}
+				{{ experienceAndEducation.endDate ? '- '~ experienceAndEducation.endDate|date('Y') : '' }}
+			{% endif %}
+		</span>,
+		<span class="bold w3-text-dark-gray">
+			{{ experienceAndEducation.what }}
+		</span>
+		/
+		<a class="w3-text-teal" title="Site web {{ experienceAndEducation.workPlace }}" href="{{ experienceAndEducation.hyperlinkWorkPlace }}" target="_blank" rel="noopener noreferrer">
+			<strong>{{ experienceAndEducation.workPlace }}</strong><i class="las la-external-link-alt"></i>
+		</a>,
+		<span class="w3-text-gray">
+			{{ experienceAndEducation.city }}
+		</span>
+	</p>
+
+
+	<p class="w3-text-gray">{{ experienceAndEducation.description }}</p>
+</div>

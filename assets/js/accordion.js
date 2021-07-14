@@ -2,9 +2,9 @@ $(function () {
     // Sur le burger, on met un ecouteur, pour derouler/enrouler le menus principal
     $("#navMenu").on("click", openMenu);
     $(".success, .warning").delay(1500).hide(200);
-    let spanInBar = $(".barre>span");
-    for (let span of spanInBar) {
-        $(span).css('width', span.dataset.rate+'%');
+    let divInBar = $(".barre>div");
+    for (let div of divInBar) {
+        $(div).css('width', div.dataset.rate+'%');
     }
 });
 

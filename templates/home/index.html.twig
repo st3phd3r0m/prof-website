@@ -3,225 +3,165 @@
 {% set currentUrl = url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
 
 {% block head %}
-<meta name="description" content="Curriculum vitae de Stéphane Derom, Développeur web junior sur Mâcon, Bourgogne-Franche-Comté. Symfony, php, sql, javascript, Bootstrap.">
+	<meta name="description" content="Curriculum vitae de Stéphane Derom, Développeur web junior sur Mâcon, Bourgogne-Franche-Comté. Symfony, php, sql, javascript, Bootstrap.">
 
-<script type="application/ld+json">
-{
-	"@context": "http://schema.org",
-	"@type": "Person",
-	"familyName": "Derom",
-	"givenName": "Stéphane",
-    "url": "{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}",
-	"jobTitle": "{{ occupation }}",
-	"alumniOf": [
-        {% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 0) %}
-            "{{ experienceAndEducation.hyperlinkWorkPlace }}" {{ loop.last ? '' : ',' }}
-        {% endfor %}
-    ],
-	"gender": "http://schema.org/Male",
-    "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Charnay-lès-Mâcon",
-        "postalCode": "71850",
-        "addressRegion": "Bourgogne-Franche-Comté"
-    },
-	"sameAs": [
-        {% for socialNetwork in socialNetworks %}
-            "{{ socialNetwork.hyperlink }}" {{ loop.last ? '' : ',' }}
-        {% endfor %}
-    ]
-}
-</script>
+	<script type="application/ld+json">
+		{
+																																	"@context": "http://schema.org",
+																																	"@type": "Person",
+																																	"familyName": "Derom",
+																																	"givenName": "Stéphane",
+																																    "url": "{{ url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}",
+																																	"jobTitle": "{{ occupation }}",
+																																	"alumniOf": [
+		{% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 0) %}
+			"{{ experienceAndEducation.hyperlinkWorkPlace }}"
+			{{ loop.last ? '' : ',' }}
+		{% endfor %}
+		],
+																																	"gender": "http://schema.org/Male",
+																																    "address": {
+																																        "@type": "PostalAddress",
+																																        "addressLocality": "Charnay-lès-Mâcon",
+																																        "postalCode": "71850",
+																																        "addressRegion": "Bourgogne-Franche-Comté"
+																																    },
+																																	"sameAs": [
+		{% for socialNetwork in socialNetworks %}
+			"{{ socialNetwork.hyperlink }}"
+			{{ loop.last ? '' : ',' }}
+		{% endfor %}
+		]
+																																}
+	</script>
 {% endblock %}
 
-{% block title %}Symfony, php, sql, javascript, Boostrap - {{ occupation }}
+{% block title %}Symfony, php, sql, javascript, Boostrap -
+	{{ occupation }}
 {% endblock %}
 
 {% block header %}
-    <a href="{{ path('home') }}" title="Retour à l'accueil">
-        <div>
-            <h1>{{ occupation }}</h1>
-            <p>{{ me }}</p>
-        </div>
-    </a>
+	<div class="w3-text-light-gray">
+		<h1>{{ occupation }}</h1>
+		<p>{{ me }}</p>
+		<p>
+			{% for socialNetwork in socialNetworks %}
+				<a href="{{ socialNetwork.hyperlink }}" target="_blank" title="{{ socialNetwork.title }}">{{ socialNetwork.logo|raw }}</a>
+			{% endfor %}
+		</p>
+	</div>
 {% endblock %}
 
 {% block body %}
 
-    {% for message in app.flashes('success') %}
-        <div class="success">{{ message }}</div>
-    {% endfor %}
-    {% for message in app.flashes('fail') %}
-        <div class="form-error-message">{{ message }}</div>
-    {% endfor %}
-    <div id="email_sent"></div>
+	{% for message in app.flashes('success') %}
+		<div class="success">{{ message }}</div>
+	{% endfor %}
+	{% for message in app.flashes('fail') %}
+		<div class="form-error-message">{{ message }}</div>
+	{% endfor %}
+	<div id="email_sent"></div>
 
-    <div>
-        <aside>
 
-        {% for miscellaneousElement in miscellaneousElements|filter(miscellaneousElement => miscellaneousElement.isAside == true) %}
-            <h2>{{ miscellaneousElement.title }}</h2>
+	<!-- Page Container -->
+	<div
+		id="mainContainer" class="w3-content w3-margin-top">
 
-            <p>{{ miscellaneousElement.content }}</p>
+		<!-- The Grid -->
+		<div
+			class="w3-row-padding">
 
-            <img src="{{ asset('images/'~ miscellaneousElement.image )|imagine_filter('min300') }}" alt="{{ miscellaneousElement.alt }}" title="{{ miscellaneousElement.alt }}">
-        {% endfor %}
+			<!-- Left Column -->
+			<aside class="w3-third w3-white w3-text-grey w3-card-4">
 
-            <address>
-                <p><i class="las la-map-marker-alt"></i>
-                    {{ Adress }}
-                </p>
+				<h2 class="w3-center">{{ me }}</h2>
 
-                <p><i class="las la-envelope"></i>
-                    <a href="mailto:{{ Email }}" title="Envoyez moi un courriel">{{ me }}</a>
-                </p>            
-            </address>
+				<div class="w3-container">
+					<section class="w3-third">
+						{% for miscellaneousElement in miscellaneousElements|filter(miscellaneousElement => miscellaneousElement.isAside == true) %}
+							<img src="{{ asset('images/'~ miscellaneousElement.image )|imagine_filter('min300') }}" alt="{{ miscellaneousElement.alt }}" title="{{ miscellaneousElement.alt }}">
+						{% endfor %}
+					</section>
 
-        {% for socialNetwork in socialNetworks %}
-            <a href="{{ socialNetwork.hyperlink }}" target="_blank" title="{{ socialNetwork.title }}">{{ socialNetwork.logo|raw }}</a>
-        {% endfor %}
-        </aside>
+					<section id="address" class="w3-twothird">
+						<p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>{{ occupation }}</p>
+						<address>
+							<p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>{{ Adress }}</p>
+							<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i><a href="mailto:{{ Email }}" title="Envoyez moi un courriel">{{ Email|replace({'@': ' at ' })  }}</a></p>
+						</address>
+						<p><i class="fa fa-car fa-fw w3-margin-right w3-large w3-text-teal"></i>Permis B</p>
+					</section>
+				</div>
 
-        <article id="CV">
-            <h2>Curriculum vitae</h2>
-            <section id="atouts">
-                <h3>Atouts</h3>
-                <ul>
-                    {% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 1) %}
-                        <li>
-                            <span>{{ skillAndFeature.what }}</span> : {{ skillAndFeature.whatmore }}
-                            {% for keyWord in skillAndFeature.keywords %}
-								<strong>{{ keyWord }}</strong> {{ loop.last ? '' : ',' }}
-							{% endfor %}
-                            <span class="barre">
-                                <span data-rate="{{ skillAndFeature.rate }}"></span>
-                            </span>
-                        </li>                        
-                    {% endfor %}
-                </ul>
-            </section>
+				<section class="w3-container">
+					<p class="w3-center">
+						{% for socialNetwork in socialNetworks %}
+							<a href="{{ socialNetwork.hyperlink }}" target="_blank" title="{{ socialNetwork.title }}">{{ socialNetwork.logo|raw }}</a>
+						{% endfor %}
+					</p>
+				</section>
 
-            <section id="competences">
-                <h3>Compétences</h3>
-                <ul>
-                    {% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 0) %}
-                        <li>
-                            <span>{{ skillAndFeature.what }}</span> : {{ skillAndFeature.whatmore }} 
-                            {% for keyWord in skillAndFeature.keywords %}
-								<strong>{{ keyWord }}</strong> {{ loop.last ? '' : ',' }}
-							{% endfor %}
 
-                            <span class="barre">
-                                <span data-rate="{{ skillAndFeature.rate }}"></span>
-                            </span>
-                        </li>                        
-                    {% endfor %}
-                </ul>
-            </section>
+				<section class="w3-container" id="competences">
+					<h3><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Compétences</h3>
 
-            {% if websites|length > 0 %}
-            <section id="websites">
-                <h3>Projets réalisés</h3>
-                <div>
-                    {% for website in websites %}
-                        <a href="{{ website.hyperlink }}" title="{{ website.alt }}" target="_blank">
-                            <i class="las la-external-link-alt"></i>
-                            <figure>
-                                <img src="{{ asset('images/'~ website.image )|imagine_filter('min300') }}" alt="{{ website.alt }}">
-                                <div>
-                                    <p class="description">
-                                        {{ website.name }}
-                                    </p>
-                                </div>
-                            </figure>
-                            </a>      
-                    {% endfor %}            
-                </div>
-            </section>
-            {% endif %}
+					{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 0) %}
 
-            <section id="experiences">
-                <h3>Expériences professionnelles</h3>
+						{% include "home/_skillAndFeature.html.twig" %}
 
-                <ul>
-                    {% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 1)|sort((a, b) => a.positionOrder <=> b.positionOrder) %}
-                        <li>
-                            <span class="periode">
-                                {% if experienceAndEducation.startDate is defined and experienceAndEducation.endDate is defined %}
-                                    {% if experienceAndEducation.startDate|date('Y') == experienceAndEducation.endDate|date('Y') %}
-                                        {{ experienceAndEducation.startDate|date('M Y') }} - {{ experienceAndEducation.endDate|date('M Y') }}
-                                    {% else %}
-                                        {{ experienceAndEducation.startDate|date('Y') }} - {{ experienceAndEducation.endDate|date('Y') }}
-                                    {% endif %}
-                                {% else %}
-                                    {{ experienceAndEducation.startDate ? experienceAndEducation.startDate|date('Y') : '' }}
-                                    {{ experienceAndEducation.endDate ? '- '~ experienceAndEducation.endDate|date('Y') : '' }}
-                                {% endif %}
-                            </span>, 
-                            <span>{{ experienceAndEducation.what }}</span>, 
-                            <a title="Site web {{ experienceAndEducation.workPlace }}" 
-                                href="{{ experienceAndEducation.hyperlinkWorkPlace }}" target="_blank" rel="noopener noreferrer">{{ experienceAndEducation.workPlace }}<i class="las la-external-link-alt"></i></a>, {{ experienceAndEducation.city }}
-                            {{ experienceAndEducation.description|raw }}
-                        </li>        
-                    {% endfor %}
+					{% endfor %}
 
-                </ul>
-            </section>
+				</section>
 
-            <section id="formation">
-                <h3>Formation</h3>
-                <ul>
-                    {% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 0)|sort((a, b) => a.positionOrder <=> b.positionOrder) %}
-                        <li>
-                            <span class="periode">
-                                {% if experienceAndEducation.startDate is defined and experienceAndEducation.endDate is defined %}
-                                    {% if experienceAndEducation.startDate|date('Y') == experienceAndEducation.endDate|date('Y') %}
-                                        {{ experienceAndEducation.startDate|date('M Y') }} - {{ experienceAndEducation.endDate|date('M Y') }}
-                                    {% else %}
-                                        {{ experienceAndEducation.startDate|date('Y') }} - {{ experienceAndEducation.endDate|date('Y') }}
-                                    {% endif %}
-                                {% else %}
-                                    {{ experienceAndEducation.startDate ? experienceAndEducation.startDate|date('Y') : '' }}
-                                    {{ experienceAndEducation.endDate ? '- '~ experienceAndEducation.endDate|date('Y') : '' }}
-                                {% endif %}
-                            </span>, 
-                            <span>{{ experienceAndEducation.what }}</span>, 
-                            <a title="Site web {{ experienceAndEducation.workPlace }}" 
-                                href="{{ experienceAndEducation.hyperlinkWorkPlace }}" target="_blank" rel="noopener noreferrer">{{ experienceAndEducation.workPlace }}<i class="las la-external-link-alt"></i></a>, {{ experienceAndEducation.city }}
-                            {{ experienceAndEducation.description|raw }}
-                        </li>
-                    {% endfor %}
-                </ul>
-            </section>
+				<section class="w3-container" id="atouts">
+					<h3><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Atouts</h3>
 
-            <section id="pub">
-                <h3>Publications scientifiques</h3>
-                <div>
-                {% for publication in publications %}
-                        <a href="{{ publication.hyperlink }}" title="Link to {{ publication.editor }} website" target="_blank">
-                            <i class="las la-external-link-alt"></i>
-                            <figure>
-                                <img src="{{ asset('images/'~ publication.image )|imagine_filter('min300') }}" alt="{{ publication.alt }}">
-                                <div>
-                                    <h2>
-                                        {{ publication.title }}
-                                    </h2>
-                                    <p>
-                                    {% for author in publication.authors %}
-                                        {{ author.name }} {{ loop.last ? '' : ',' }}
-                                    {% endfor %}
-                                    </p>
-                                </div>
-                            </figure>
-                        </a>                    
-                {% endfor %}
-                </div>
-            </section>
-        </article>
-    </div>
+					{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 1) %}
 
-    <section id="contact">
-        <h2>Contact</h2>
-        {{ include('home/_formMessages.html.twig') }}
-    </section>
+						{% include "home/_skillAndFeature.html.twig" %}
+
+					{% endfor %}
+
+				</section>
+			</aside>
+
+			<!-- End Left Column -->
+
+			<!-- Right Column -->
+			<article class="w3-twothird">
+
+				<section class="w3-container w3-card w3-white w3-margin-bottom" id="experiences">
+					<h2 class="w3-text-grey w3-padding-16">
+						<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Expériences</h2>
+
+					{% include "home/_projects.html.twig" %}
+
+					{% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 1)|sort((a, b) => a.positionOrder <=> b.positionOrder) %}
+
+						{% include "home/_experienceAndEducation.html.twig" %}
+					{% endfor %}
+
+				</section>
+
+				<section class="w3-container w3-card w3-white" id="formation">
+					<h2 class="w3-text-grey w3-padding-16">
+						<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Formation</h2>
+
+					{% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 0)|sort((a, b) => a.positionOrder <=> b.positionOrder) %}
+						{% include "home/_experienceAndEducation.html.twig" %}
+					{% endfor %}
+
+				</section>
+
+				<!-- End Right Column -->
+			</article>
+			<!-- End Grid -->
+		</div>
+		<section id="contact">
+			<h2>Contact</h2>
+			{{ include('home/_formMessages.html.twig') }}
+		</section>
+
+		<!-- End Page Container -->
+	</div>
 {% endblock %}

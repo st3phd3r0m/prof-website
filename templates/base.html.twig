@@ -3,61 +3,58 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="google-site-verification" content="Wr5BUZc4nd6eJo78JABT90fcP6QqH1dJAnaZAfyrVnU" />
-        <meta name="author" content="Stéphane Derom">
-
-        {% block head %}
-        {% endblock %}
+		<meta name="google-site-verification" content="Wr5BUZc4nd6eJo78JABT90fcP6QqH1dJAnaZAfyrVnU"/>
+		<meta name="author" content="Stéphane Derom"> {% block head %}{% endblock %}
 
 		<title>
 			{% block title %}{% endblock %}
 		</title>
-        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-        {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 	</head>
-	<body>
+	<body class="w3-light-grey">
 
-        <header>
-            {% block header %}
-            {% endblock %}
+		<header>
+			{% block header %}{% endblock %}
 
-            <!-- Barre de navigation-->
-            <nav>
+			<!-- Barre de navigation-->
+			<nav>
+				<!-- Hamburger -->
+				<span id="navMenu" title="Menu">
+					<i class="las la-bars"></i>
+				</span>
+				<!-- Fin hamburger -->
 
-                <!-- Hamburger -->
-                <span id="navMenu" title="Menu">
-                    <i class="las la-bars"></i>
-                </span>
-                <!-- Fin hamburger -->
+				<!-- Barre navigation vue ordi -->
+				<div class="menuPrincipal w3-dark-gray">
+					<a class="w3-text-light-gray" href="#atouts" title="Atouts de Stéphane Derom">Atouts</a>
+					<a class="w3-text-light-gray" href="#competences" title="Compétences de Stéphane Derom">Compétences</a>
+					{% if showNumberOfWebSites() > 0 %}
+						<a class="w3-text-light-gray" href="#websites" title="Projets réalisés par Stéphane Derom">Projets réalisés</a>
+					{% endif %}
+					<a class="w3-text-light-gray" href="#experiences" title="Expériences professionnelles de Stéphane Derom">Expériences professionnelles</a>
+					<a class="w3-text-light-gray" href="#formation" title="Formation de Stéphane Derom">Formation</a>
+					<a class="w3-text-light-gray" href="#pub" title="Publications scientifiques de Stéphane Derom">Publications scientifiques</a>
+					<a class="w3-text-light-gray" href="#contact" title="Contacter Stéphane Derom">Contact</a>
+				</div>
 
-                <!-- Barre navigation vue ordi -->
-                <div class="menuPrincipal">
-                    <a href="#atouts" title="Atouts de Stéphane Derom">Atouts</a>
-                    <a href="#competences" title="Compétences de Stéphane Derom">Compétences</a>
-                    {% if showNumberOfWebSites() > 0 %}
-                        <a href="#websites" title="Projets réalisés par Stéphane Derom">Projets réalisés</a>
-                    {% endif %}
-                    <a href="#experiences" title="Expériences professionnelles de Stéphane Derom">Expériences professionnelles</a>
-                    <a href="#formation" title="Formation de Stéphane Derom">Formation</a>
-                    <a href="#pub" title="Publications scientifiques de Stéphane Derom">Publications scientifiques</a>
-                    <a href="#contact" title="Contacter Stéphane Derom">Contact</a>
-                </div>
+			</nav>
+			<!-- Fin barre de navigation -->
+		</header>
 
-            </nav>
-            <!-- Fin barre de navigation -->
-        </header>
+		<span id="scroll" title="Back to home">
+			<i class="las la-angle-double-up"></i>
+		</span>
 
-        <span id="scroll" title="Back to home">
-	        <i class="las la-angle-double-up"></i>
-        </span>
-
-        <main>
-            {% block body %}{% endblock %}
-        </main>
-        {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+		<main>
+			{% block body %}{% endblock %}
+		</main>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
 	</body>
 </html>

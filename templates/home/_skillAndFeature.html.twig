@@ -1,0 +1,17 @@
+<p>
+	<span class="bold">
+		{{ skillAndFeature.what }}
+	</span>
+    {% if skillAndFeature.keywords|length > 0 %} : {% endif %}
+	<span >
+		{% for keyWord in skillAndFeature.keywords %}
+			<strong class="w3-text-teal">{{ keyWord }}</strong>
+			{{ loop.last and skillAndFeature.whatmore == null ? '' : ',' }}
+		{% endfor %}
+		{{ skillAndFeature.whatmore }}
+	</span>
+</p>
+
+<div class="barre w3-light-gray">
+    <div class="w3-teal" data-rate="{{ skillAndFeature.rate }}"></div>
+</div>

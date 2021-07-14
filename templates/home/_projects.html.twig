@@ -1,0 +1,15 @@
+<div id="websites">
+	{% for website in websites %}
+		<figure>
+            <i class="las la-external-link-alt"></i>
+			<a href="{{ website.hyperlink }}" title="{{ website.alt }}" target="_blank">
+				<img src="{{ asset('images/'~ website.image )|imagine_filter('min300') }}" alt="{{ website.alt }}">
+			</a>
+			<div>
+				<p class="description">
+					{{ website.name|raw }}
+				</p>
+			</div>
+		</figure>
+	{% endfor %}
+</div>
