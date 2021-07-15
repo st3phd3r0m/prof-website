@@ -4,17 +4,21 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserType extends AbstractType
 {
@@ -58,14 +62,53 @@ class UserType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('born_at', BirthdayType::class, [
+                'required' => false,
+                'label' => 'Date de naissance',
+            ])
             ->add('occupation', TextType::class, [
                 'required' => true,
-                'label' => '"Métier"',
+                'label' => 'Poste',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir un "métier"',
+                        'message' => 'Veuillez saisir un nom de poste',
                     ]),
                 ],
+            ])
+            ->add('content', TextareaType::class, [
+                'required' => false,
+                'label' => 'Contenu de l\'élément : ',
+            ])
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'label' => 'Image de présentation',
+                'download_link' => false,
+                'imagine_pattern' => 'miniatures',
+                'constraints' => [
+                    new Image([
+                        'maxSize' => '2M',
+                        'maxSizeMessage' => 'Votre image dépasse les 2Mo',
+                        'mimeTypes' => ['image/webp'],
+                        'mimeTypesMessage' => 'Votre image doit être de type WEBP',
+                    ]),
+                ],
+            ])
+            ->add('alt', TextType::class, [
+                'required' => true,
+                'label' => 'Texte alternatif : ',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez saisir un texte.',
+                    ]),
+                ],
+            ])
+            ->add('location', TextType::class, [
+                'required' => false,
+                'label' => 'Adresse : ',
+            ])
+            ->add('phone', TelType::class, [
+                'required' => false,
+                'label' => 'Numéro de téléphone',
             ])
             ->add('roles', ChoiceType::class, [
                 'required' => true,
@@ -76,14 +119,6 @@ class UserType extends AbstractType
                     // 'Utilisateur' => 'ROLE_USER',
                     'Oui' => 'ROLE_ADMIN',
                 ],
-            ])
-            ->add('location', TextType::class, [
-                'required' => false,
-                'label' => 'Adresse : ',
-            ])
-            ->add('phone', TelType::class, [
-                'required' => false,
-                'label' => 'Numéro de téléphone',
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'required' => true,
@@ -100,7 +135,6 @@ class UserType extends AbstractType
                         'class' => 'policeForm',
                     ],
                 ],
-
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Entrez votre mot de passe',

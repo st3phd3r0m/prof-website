@@ -198,10 +198,13 @@ body {
                 }
             }
 
+            a[href^="mailto"]{
+                text-decoration: none;
+            }
+            
         }
 
         article {
-
             #websites {
 
                 .la-external-link-alt {

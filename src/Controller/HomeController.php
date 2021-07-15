@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Courriels;
 use App\Form\CourrielsType;
 use App\Repository\ExperiencesAndEducationsRepository;
-use App\Repository\MiscellaneousElementsRepository;
 use App\Repository\PublicationsRepository;
 use App\Repository\SkillsAndFeaturesRepository;
 use App\Repository\SocialNetworksRepository;
@@ -34,7 +33,6 @@ class HomeController extends AbstractController
      * @Route("/", name="home", methods={"GET","POST"})
      */
     public function index(
-        MiscellaneousElementsRepository $miscellaneousElementsRepository,
         SkillsAndFeaturesRepository $skillsAndFeaturesRepository,
         ExperiencesAndEducationsRepository $experiencesAndEducationsRepository,
         PublicationsRepository $publicationsRepository, WebSitesRepository $webSitesRepository,
@@ -71,7 +69,6 @@ class HomeController extends AbstractController
         $user = $this->userRepository->findOneBy(['firstname' => 'Stéphane', 'lastname' => 'Derom']);
 
         return $this->render('home/index.html.twig', [
-            'miscellaneousElements' => $miscellaneousElementsRepository->findAll(),
             'skillsAndFeatures' => $skillsAndFeaturesRepository->findAll(),
             'experiencesAndEducations' => $experiencesAndEducationsRepository->findAll(),
             'publications' => $publicationsRepository->findAll(),
@@ -81,6 +78,10 @@ class HomeController extends AbstractController
             'Adress' => $user->getLocation(),
             'Email' => $user->getEmail(),
             'occupation' => $user->getOccupation(),
+            'photo' => $user->getImage(),
+            'photoAlt' => $user->getAlt(),
+            'age' => date_diff(new \DateTime('now'), $user->getBornAt())->format('%Y'),
+            'content' => $user->getContent(),
             'form' => $formContact->createView(),
         ]);
     }

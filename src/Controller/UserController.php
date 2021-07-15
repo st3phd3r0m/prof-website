@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,6 +37,8 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setUpdatedAt(new \DateTime('now'));
+
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -114,14 +117,26 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request, User $user, Filesystem $filesystem): Response
     {
+        //Récupération des noms de fichiers images pour suppression ultérieure des miniatures
+        $oldImage = $user->getImage();
+
         $form = $this->createForm(UserType::class, $user);
         $form->remove('plainPassword');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setUpdatedAt(new \DateTime('now'));
+
             $this->getDoctrine()->getManager()->flush();
+
+            $miniature = '../public/media/cache/miniatures/images/'.$oldImage;
+            //On supprime la miniature correspondante à l'image
+            if ($filesystem->exists($miniature)) {
+                //Alors on supprime la miniature correspondante
+                $filesystem->remove($miniature);
+            }
 
             return $this->redirectToRoute('user_index');
         }
