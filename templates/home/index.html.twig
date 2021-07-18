@@ -47,7 +47,7 @@
 		<p>{{ content }}</p>
 		<p>
 			{% for socialNetwork in socialNetworks %}
-				<a href="{{ socialNetwork.hyperlink }}" target="_blank" title="{{ socialNetwork.title }}">{{ socialNetwork.logo|raw }}</a>
+				<a href="{{ socialNetwork.hyperlink }}" target="_blank" title="{{ socialNetwork.title }}" class="w3-hover-opacity">{{ socialNetwork.logo|raw }}</a>
 			{% endfor %}
 		</p>
 	</div>
@@ -73,16 +73,16 @@
 			class="w3-row-padding">
 
 			<!-- Left Column -->
-			<aside class="w3-third w3-white w3-text-grey w3-card-4">
+			<aside class="w3-col l4 w3-white w3-text-grey w3-card-4 w3-margin-bottom"> 
 
 				<h2 class="w3-center">{{ me }}</h2>
 
 				<div class="w3-container">
-					<section class="w3-third">
+					<section class="w3-col m4 l12">
 						<img src="{{ asset('images/'~ photo )|imagine_filter('min300') }}" alt="{{ photoAlt }}" title="{{ photoAlt }}">
 					</section>
 
-					<section id="address" class="w3-twothird">
+					<section id="address" class="w3-col m8 l12">
 						<p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>{{ occupation }}</p>
 						<address>
 							<p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>{{ Adress }}</p>
@@ -96,7 +96,7 @@
 				<section class="w3-container">
 					<p class="w3-center">
 						{% for socialNetwork in socialNetworks %}
-							<a href="{{ socialNetwork.hyperlink }}" target="_blank" title="{{ socialNetwork.title }}">{{ socialNetwork.logo|raw }}</a>
+							<a href="{{ socialNetwork.hyperlink }}" target="_blank" title="{{ socialNetwork.title }}" class="w3-hover-opacity">{{ socialNetwork.logo|raw }}</a>
 						{% endfor %}
 					</p>
 				</section>
@@ -128,7 +128,7 @@
 			<!-- End Left Column -->
 
 			<!-- Right Column -->
-			<article class="w3-twothird">
+			<article class="w3-col l8">
 
 				<section class="w3-container w3-card w3-white w3-margin-bottom" id="experiences">
 					<h2 class="w3-text-grey w3-padding-16">
@@ -137,7 +137,6 @@
 					{% include "home/_projects.html.twig" %}
 
 					{% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 1)|sort((a, b) => a.positionOrder <=> b.positionOrder) %}
-
 						{% include "home/_experienceAndEducation.html.twig" %}
 					{% endfor %}
 

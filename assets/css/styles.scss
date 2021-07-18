@@ -14,14 +14,25 @@ body {
     font-family: abelregular;
     font-size: 20px;
 
-    header {
+    i.fa,
+    i.la {
+        font-size: 2rem;
+        margin: 0 3px 0 3px;
+    }
 
+    svg {
+        position: relative;
+        width: 100px;
+        top: 12px;
+        filter: grayscale(100%) brightness(190%);
+        margin: 0 3px 0 3px;
+    }
+
+    header {
         background-image: url("lodyas.webp");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-
-
         height: 100vh;
         position: relative;
 
@@ -31,21 +42,11 @@ body {
             top: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-
             p {
                 font-style: italic;
             }
 
-            i.fa,
-            i.la {
-                font-size: 2rem;
-            }
-
-            svg {
-                width: 50px;
-            }
         }
-
 
         nav {
             position: fixed;
@@ -110,7 +111,6 @@ body {
             }
 
         }
-
     }
 
     #scroll {
@@ -134,9 +134,8 @@ body {
     }
 
     main {
-
-        #mainContainer{
-            max-width:1600px;
+        #mainContainer {
+            max-width: 1600px;
         }
 
         .success,
@@ -165,25 +164,35 @@ body {
             display: none;
         }
 
-        .bold{
+        .bold {
             font-weight: bolder;
         }
 
         aside {
 
-            h2,h3{
-                margin-top:30px;
-                margin-bottom:30px;
+            h2,
+            h3 {
+                margin-top: 30px;
+                margin-bottom: 30px;
             }
 
             img {
-                width: 100%;
+                width: 50%;
+
+                @media screen and (min-width : 601px) {
+                    width: 100%;
+                }
+
+                @media screen and (min-width : 993px) {
+                    width: 50%;
+                }
+
                 border-radius: 25%;
                 padding-right: 10px;
             }
 
-            p{
-                margin:0;
+            p {
+                margin: 0;
             }
 
             .barre {
@@ -191,6 +200,7 @@ body {
                 height: 20px;
                 border-radius: 10px;
                 margin-bottom: 40px;
+
                 >div {
                     width: 50%;
                     height: 100%;
@@ -198,15 +208,24 @@ body {
                 }
             }
 
-            a[href^="mailto"]{
+            a[href^="mailto"] {
                 text-decoration: none;
             }
-            
+
+            svg {
+                filter: grayscale(100%);
+            }
         }
 
         article {
-            #websites {
 
+            @media screen and (max-width : 992px) {
+                padding: 0 !important;
+            }
+
+            padding: inherit;
+
+            #websites {
                 .la-external-link-alt {
                     float: right;
                 }
@@ -214,10 +233,9 @@ body {
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 align-items: center;
-                gap: 10px;
+                gap: 15px;
 
                 >figure {
-
                     width: 200px;
                     margin: 0;
                     padding: 0;
@@ -233,7 +251,6 @@ body {
                             border-radius: 10px 10px 0 0;
                         }
                     }
-
 
                     >div {
                         margin: 0;
@@ -252,7 +269,6 @@ body {
                         }
 
                         p {
-                            // display: none;
                             margin: 0;
                             padding: 0 10px 10px 10px;
                             font-size: 1rem;
@@ -277,19 +293,17 @@ body {
                         box-shadow: 0 0 30px lightseagreen;
                         width: 220px;
                         right: 10px;
-                    }                    
+                    }
                 }
             }
         }
 
-
         #contact {
 
             box-sizing: border-box;
-            padding: 10% 10% 100px 10%;
+            padding: 5% 10% 100px 10%;
             // background-color: rgb(31, 30, 30);
             color: rgba(255, 255, 255, 0.87);
-
 
             >h2 {
                 color: rgba(47, 45, 45, 0.87);
@@ -324,10 +338,5 @@ body {
             }
 
         }
-
-
-
     }
-
-
 }
