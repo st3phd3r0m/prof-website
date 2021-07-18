@@ -2,30 +2,28 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_modules_es_array_from_js-node_modules_core-js_modules_es_array_i-18e252.js",
-        "/build/vendors-node_modules_core-js_modules_es_promise_js-node_modules_core-js_modules_web_timers_js.js",
-        "/build/vendors-node_modules_core-js_modules_es_string_replace_js.js",
-        "/build/app.js"
+        "/build/runtime.ddd72fd3.js",
+        "/build/710.033eca89.js",
+        "/build/408.d608f29c.js",
+        "/build/app.63916f48.js"
       ],
       "css": [
-        "/build/app.css"
+        "/build/app.db9fa864.css"
       ]
     },
     "adminedit": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_modules_es_array_from_js-node_modules_core-js_modules_es_array_i-18e252.js",
-        "/build/vendors-node_modules_core-js_modules_es_string_replace_js.js",
-        "/build/adminedit.js"
+        "/build/runtime.ddd72fd3.js",
+        "/build/710.033eca89.js",
+        "/build/adminedit.6dd0d75e.js"
       ]
     },
     "adminDeleteCourriels": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_modules_es_array_from_js-node_modules_core-js_modules_es_array_i-18e252.js",
-        "/build/vendors-node_modules_core-js_modules_es_promise_js-node_modules_core-js_modules_web_timers_js.js",
-        "/build/adminDeleteCourriels.js"
+        "/build/runtime.ddd72fd3.js",
+        "/build/710.033eca89.js",
+        "/build/408.d608f29c.js",
+        "/build/adminDeleteCourriels.09f49700.js"
       ]
     }
   }

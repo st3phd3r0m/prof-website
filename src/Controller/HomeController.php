@@ -123,4 +123,47 @@ class HomeController extends AbstractController
     {
         return $this->render('home/lacalculatrice.html.twig');
     }
+
+
+    // /**
+    //  * @Route("/order/bill/{id}", name="customer_bill", methods={"GET","POST"})
+    //  * @param Request $request
+    //  * @param Orders $order
+    //  * @return Response
+    //  */
+    // public function cvDownload(Orders $order)
+    // {
+
+    //     $path = 'images/miscellaneous/logo.png';
+    //     $type = pathinfo($path, PATHINFO_EXTENSION);
+    //     $data = file_get_contents($path);
+    //     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+
+    //     $pdfOptions = new Options();
+    //     $pdfOptions->set('defaultFont', 'Arial');
+
+    //     // Instantiate Dompdf with our options
+    //     $dompdf = new Dompdf($pdfOptions);
+
+    //     // Retrieve the HTML generated in our twig file
+    //     $html = $this->renderView('customer/billDownload.html.twig', [
+    //         'order' => $order,
+    //         'base64' => $base64
+    //     ]);
+
+    //     // Load HTML to Dompdf
+    //     $dompdf->loadHtml($html);
+
+    //     // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+    //     $dompdf->setPaper('A4', 'portrait');
+
+    //     // Render the HTML as PDF
+    //     $dompdf->render();
+
+    //     // Output the generated PDF to Browser (inline view)
+    //     $dompdf->stream("mypdf.pdf", [
+    //         "Attachment" => true
+    //     ]);
+    // }
 }
