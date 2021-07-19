@@ -2,7 +2,7 @@
 	{% for website in websites %}
 		<figure>
             <i class="las la-external-link-alt w3-text-dark-gray"></i>
-			<a href="{{ website.hyperlink }}" title="{{ website.alt }}" target="_blank">
+			<a href="{{ website.url }}" title="{{ website.alt }}" target="_blank">
 				<img src="{{ asset('images/'~ website.image )|imagine_filter('min300') }}" alt="{{ website.alt }}">
 			</a>
 			<div>

@@ -34,7 +34,7 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Hyperlink</th>
+                        <th>Url</th>
                         <th>Image</th>
                         <th>Updated_at</th>
                         <th>Alt</th>
@@ -45,7 +45,7 @@
                 {% for web_site in web_sites %}
                     <tr>
                         <td>{{ web_site.name }}</td>
-                        <td>{{ web_site.hyperlink }}</td>
+                        <td>{{ web_site.url }}</td>
                         <td>
                             {% if web_site.image is not empty %}
                             <img src="{{ asset('images/'~ web_site.image ) | imagine_filter('miniatures') }}" alt="{{ web_site.alt }}">

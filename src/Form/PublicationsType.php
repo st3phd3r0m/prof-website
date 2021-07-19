@@ -48,7 +48,7 @@ class PublicationsType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('hyperlink', UrlType::class, [
+            ->add('url', UrlType::class, [
                 'required' => true,
                 'label' => 'URL du lien : ',
                 'constraints' => [

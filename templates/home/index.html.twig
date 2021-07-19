@@ -15,7 +15,7 @@
 																																	"jobTitle": "{{ occupation }}",
 																																	"alumniOf": [
 		{% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 0) %}
-			"{{ experienceAndEducation.hyperlinkWorkPlace }}"
+			"{{ experienceAndEducation.urlWorkPlace }}"
 			{{ loop.last ? '' : ',' }}
 		{% endfor %}
 		],
@@ -28,7 +28,7 @@
 																																    },
 																																	"sameAs": [
 		{% for socialNetwork in socialNetworks %}
-			"{{ socialNetwork.hyperlink }}"
+			"{{ socialNetwork.url }}"
 			{{ loop.last ? '' : ',' }}
 		{% endfor %}
 		]
@@ -47,7 +47,7 @@
 		<p>{{ content }}</p>
 		<p>
 			{% for socialNetwork in socialNetworks %}
-				<a href="{{ socialNetwork.hyperlink }}" target="_blank" title="{{ socialNetwork.title }}" class="w3-hover-opacity">{{ socialNetwork.logo|raw }}</a>
+				<a href="{{ socialNetwork.url }}" target="_blank" title="{{ socialNetwork.title }}" class="w3-hover-opacity">{{ socialNetwork.logo|raw }}</a>
 			{% endfor %}
 		</p>
 	</div>
@@ -96,7 +96,7 @@
 				<section class="w3-container">
 					<p class="w3-center">
 						{% for socialNetwork in socialNetworks %}
-							<a href="{{ socialNetwork.hyperlink }}" target="_blank" title="{{ socialNetwork.title }}" class="w3-hover-opacity">{{ socialNetwork.logo|raw }}</a>
+							<a href="{{ socialNetwork.url }}" target="_blank" title="{{ socialNetwork.title }}" class="w3-hover-opacity">{{ socialNetwork.logo|raw }}</a>
 						{% endfor %}
 					</p>
 				</section>

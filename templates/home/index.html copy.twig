@@ -15,7 +15,7 @@
 	"jobTitle": "{{ occupation }}",
 	"alumniOf": [
         {% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 0) %}
-            "{{ experienceAndEducation.hyperlinkWorkPlace }}" {{ loop.last ? '' : ',' }}
+            "{{ experienceAndEducation.urlWorkPlace }}" {{ loop.last ? '' : ',' }}
         {% endfor %}
     ],
 	"gender": "http://schema.org/Male",
@@ -27,7 +27,7 @@
     },
 	"sameAs": [
         {% for socialNetwork in socialNetworks %}
-            "{{ socialNetwork.hyperlink }}" {{ loop.last ? '' : ',' }}
+            "{{ socialNetwork.url }}" {{ loop.last ? '' : ',' }}
         {% endfor %}
     ]
 }
@@ -78,7 +78,7 @@
             </address>
 
         {% for socialNetwork in socialNetworks %}
-            <a href="{{ socialNetwork.hyperlink }}" target="_blank" title="{{ socialNetwork.title }}">{{ socialNetwork.logo|raw }}</a>
+            <a href="{{ socialNetwork.url }}" target="_blank" title="{{ socialNetwork.title }}">{{ socialNetwork.logo|raw }}</a>
         {% endfor %}
         </aside>
 
@@ -124,7 +124,7 @@
                 <h3>Projets réalisés</h3>
                 <div>
                     {% for website in websites %}
-                        <a href="{{ website.hyperlink }}" title="{{ website.alt }}" target="_blank">
+                        <a href="{{ website.url }}" title="{{ website.alt }}" target="_blank">
                             <i class="las la-external-link-alt"></i>
                             <figure>
                                 <img src="{{ asset('images/'~ website.image )|imagine_filter('min300') }}" alt="{{ website.alt }}">
@@ -160,7 +160,7 @@
                             </span>, 
                             <span>{{ experienceAndEducation.what }}</span>, 
                             <a title="Site web {{ experienceAndEducation.workPlace }}" 
-                                href="{{ experienceAndEducation.hyperlinkWorkPlace }}" target="_blank" rel="noopener noreferrer">{{ experienceAndEducation.workPlace }}<i class="las la-external-link-alt"></i></a>, {{ experienceAndEducation.city }}
+                                href="{{ experienceAndEducation.urlWorkPlace }}" target="_blank" rel="noopener noreferrer">{{ experienceAndEducation.workPlace }}<i class="las la-external-link-alt"></i></a>, {{ experienceAndEducation.city }}
                             {{ experienceAndEducation.description|raw }}
                         </li>        
                     {% endfor %}
@@ -187,7 +187,7 @@
                             </span>, 
                             <span>{{ experienceAndEducation.what }}</span>, 
                             <a title="Site web {{ experienceAndEducation.workPlace }}" 
-                                href="{{ experienceAndEducation.hyperlinkWorkPlace }}" target="_blank" rel="noopener noreferrer">{{ experienceAndEducation.workPlace }}<i class="las la-external-link-alt"></i></a>, {{ experienceAndEducation.city }}
+                                href="{{ experienceAndEducation.urlWorkPlace }}" target="_blank" rel="noopener noreferrer">{{ experienceAndEducation.workPlace }}<i class="las la-external-link-alt"></i></a>, {{ experienceAndEducation.city }}
                             {{ experienceAndEducation.description|raw }}
                         </li>
                     {% endfor %}
@@ -198,7 +198,7 @@
                 <h3>Publications scientifiques</h3>
                 <div>
                 {% for publication in publications %}
-                        <a href="{{ publication.hyperlink }}" title="Link to {{ publication.editor }} website" target="_blank">
+                        <a href="{{ publication.url }}" title="Link to {{ publication.editor }} website" target="_blank">
                             <i class="las la-external-link-alt"></i>
                             <figure>
                                 <img src="{{ asset('images/'~ publication.image )|imagine_filter('min300') }}" alt="{{ publication.alt }}">

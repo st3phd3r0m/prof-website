@@ -46,7 +46,7 @@ class ExperiencesAndEducations
      * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
-    private $hyperlink_work_place;
+    private $url_work_place;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -125,14 +125,14 @@ class ExperiencesAndEducations
         return $this;
     }
 
-    public function getHyperlinkWorkPlace(): ?string
+    public function getUrlWorkPlace(): ?string
     {
-        return $this->hyperlink_work_place;
+        return $this->url_work_place;
     }
 
-    public function setHyperlinkWorkPlace(?string $hyperlink_work_place): self
+    public function setUrlWorkPlace(?string $url_work_place): self
     {
-        $this->hyperlink_work_place = $hyperlink_work_place;
+        $this->url_work_place = $url_work_place;
 
         return $this;
     }

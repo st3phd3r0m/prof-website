@@ -42,7 +42,7 @@
 								<span class="w3-margin-right w3-text-teal"><i class="fa fa-calendar"></i></span>{{ age }} ans</p>
 
                             {% for socialNetwork in socialNetworks %}
-                                <p><span class="w3-margin-right w3-text-teal">{{ socialNetwork.logo|raw }}</span>{{ socialNetwork.hyperlink|replace({'http://': '','https://': ''}) }}</p>
+                                <p><span class="w3-margin-right w3-text-teal">{{ socialNetwork.logo|raw }}</span>{{ socialNetwork.url|replace({'http://': '','https://': ''}) }}</p>
                             {% endfor %}
                             
 						</div>

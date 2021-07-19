@@ -54,7 +54,7 @@ class Publications
      * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
-    private $hyperlink;
+    private $url;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -149,14 +149,14 @@ class Publications
         return $this;
     }
 
-    public function getHyperlink(): ?string
+    public function getUrl(): ?string
     {
-        return $this->hyperlink;
+        return $this->url;
     }
 
-    public function setHyperlink(?string $hyperlink): self
+    public function setUrl(?string $url): self
     {
-        $this->hyperlink = $hyperlink;
+        $this->url = $url;
 
         return $this;
     }

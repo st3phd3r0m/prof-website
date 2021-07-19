@@ -34,7 +34,7 @@ class SocialNetworks
      * @ORM\Column(type="string", length=255)
      * @var string
      */
-    private $hyperlink;
+    private $url;
 
     public function getId(): ?int
     {
@@ -65,14 +65,14 @@ class SocialNetworks
         return $this;
     }
 
-    public function getHyperlink(): ?string
+    public function getUrl(): ?string
     {
-        return $this->hyperlink;
+        return $this->url;
     }
 
-    public function setHyperlink(string $hyperlink): self
+    public function setUrl(string $url): self
     {
-        $this->hyperlink = $hyperlink;
+        $this->url = $url;
 
         return $this;
     }

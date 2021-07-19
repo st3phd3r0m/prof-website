@@ -66,7 +66,7 @@ class ExperiencesAndEducationsType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('hyperlink_work_place', UrlType::class, [
+            ->add('url_work_place', UrlType::class, [
                 'required' => false,
                 'label' => 'Lien hypertexte',
                 'constraints' => [

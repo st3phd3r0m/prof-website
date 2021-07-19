@@ -34,15 +34,21 @@ class WebSitesType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('hyperlink', UrlType::class, [
-                'required' => true,
-                'label' => 'Lien hypertexte',
+            ->add('url', UrlType::class, [
+                'required' => false,
+                'label' => 'Url',
+                // 'constraints' => [
+                //     new Url([
+                //         'message' => 'Veuillez saisir une url',
+                //     ]),
+                // ],
+            ])
+            ->add('repo_url', UrlType::class, [
+                'required' => false,
+                'label' => 'Url dépôt',
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez saisir Lien hypertexte',
-                    ]),
                     new Url([
-                        'message' => 'Veuillez saisir Lien hypertexte',
+                        'message' => 'Veuillez saisir une url',
                     ]),
                 ],
             ])

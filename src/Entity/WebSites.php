@@ -28,10 +28,16 @@ class WebSites
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
-    private $hyperlink;
+    private $url;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $repo_url;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -77,14 +83,26 @@ class WebSites
         return $this;
     }
 
-    public function getHyperlink(): ?string
+    public function getUrl(): ?string
     {
-        return $this->hyperlink;
+        return $this->url;
     }
 
-    public function setHyperlink(string $hyperlink): self
+    public function setUrl(?string $url): self
     {
-        $this->hyperlink = $hyperlink;
+        $this->url = $url;
+
+        return $this;
+    }
+
+    public function getRepoUrl(): ?string
+    {
+        return $this->repo_url;
+    }
+
+    public function setRepoUrl(?string $repo_url): self
+    {
+        $this->repo_url = $repo_url;
 
         return $this;
     }
@@ -147,4 +165,5 @@ class WebSites
 
         return $this;
     }
+
 }

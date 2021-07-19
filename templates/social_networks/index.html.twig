@@ -35,7 +35,7 @@
 					<tr>
 						<th>Title</th>
 						<th>Logo</th>
-						<th>Hyperlink</th>
+						<th>Url</th>
 						<th>actions</th>
 					</tr>
 				</thead>
@@ -44,7 +44,7 @@
 					<tr>
 						<td>{{ social_network.title }}</td>
 						<td>{{ social_network.logo }}</td>
-						<td>{{ social_network.hyperlink }}</td>
+						<td>{{ social_network.url }}</td>
 						<td>
 							<a href="{{ path('social_networks_show', {'id': social_network.id}) }}">show</a>
 							<a href="{{ path('social_networks_edit', {'id': social_network.id}) }}">edit</a>

@@ -43,7 +43,7 @@ class SocialNetworksType extends AbstractType
                 //     ]),
                 // ]
             ])
-            ->add('hyperlink', UrlType::class, [
+            ->add('url', UrlType::class, [
                 'required' => true,
                 'label' => 'Lien hypertexte',
                 'constraints' => [
