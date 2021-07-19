@@ -1,0 +1,9 @@
+<ul class="w3-text-gray">
+	{% for website in websites %}
+		<li class="w3-margin-bottom">
+			{{ website.name|raw }}
+			:
+			{{ website.hyperlink|replace({'http://': '','https://': ''}) }}
+		</li>
+	{% endfor %}
+</ul>

@@ -10,6 +10,8 @@ use App\Repository\SkillsAndFeaturesRepository;
 use App\Repository\SocialNetworksRepository;
 use App\Repository\UserRepository;
 use App\Repository\WebSitesRepository;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,7 +40,7 @@ class HomeController extends AbstractController
         PublicationsRepository $publicationsRepository, WebSitesRepository $webSitesRepository,
         SocialNetworksRepository $socialNetworksRepository, Request $request
     ): Response {
-            //Instanciation de Messages, création formulaire de contact
+         //Instanciation de Messages, création formulaire de contact
         $message = new Courriels();
         $formContact = $this->createForm(CourrielsType::class, $message);
         $formContact->handleRequest($request);
@@ -125,45 +127,76 @@ class HomeController extends AbstractController
     }
 
 
-    // /**
-    //  * @Route("/order/bill/{id}", name="customer_bill", methods={"GET","POST"})
-    //  * @param Request $request
-    //  * @param Orders $order
-    //  * @return Response
-    //  */
-    // public function cvDownload(Orders $order)
-    // {
+    /**
+     * @Route("/download/cv", name="download_cv", methods={"GET"})
+     * @param Request $request
+     */
+    public function cvDownload(SkillsAndFeaturesRepository $skillsAndFeaturesRepository,
+    ExperiencesAndEducationsRepository $experiencesAndEducationsRepository, WebSitesRepository $webSitesRepository,
+    SocialNetworksRepository $socialNetworksRepository): Response
+    {
+        // $path = 'images/miscellaneous/logo.png';
+        // $type = pathinfo($path, PATHINFO_EXTENSION);
+        // $data = file_get_contents($path);
+        // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-    //     $path = 'images/miscellaneous/logo.png';
-    //     $type = pathinfo($path, PATHINFO_EXTENSION);
-    //     $data = file_get_contents($path);
-    //     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+
+        $user = $this->userRepository->findOneBy(['firstname' => 'Stéphane', 'lastname' => 'Derom']);
+
+        // // Retrieve the HTML generated in our twig file
+        // $html = $this->renderView('home/cv.html.twig', [
+        //     'skillsAndFeatures' => $skillsAndFeaturesRepository->findAll(),
+        //     'experiencesAndEducations' => $experiencesAndEducationsRepository->findAll(),
+        //     'websites' => $webSitesRepository->findAll(),
+        //     'socialNetworks' => $socialNetworksRepository->findAll(),
+        //     'me' => $user->getFirstname().' '.$user->getLastname(),
+        //     'Adress' => $user->getLocation(),
+        //     'Email' => $user->getEmail(),
+        //     'occupation' => $user->getOccupation(),
+        //     'photo' => $user->getImage(),
+        //     'photoAlt' => $user->getAlt(),
+        //     'age' => date_diff(new \DateTime('now'), $user->getBornAt())->format('%Y'),
+        //     'content' => $user->getContent(),
+        //     // 'base64' => $base64
+        // ]);
 
 
-    //     $pdfOptions = new Options();
-    //     $pdfOptions->set('defaultFont', 'Arial');
 
-    //     // Instantiate Dompdf with our options
-    //     $dompdf = new Dompdf($pdfOptions);
+        // // Load HTML to Dompdf
+        // $dompdf->loadHtml($html);
 
-    //     // Retrieve the HTML generated in our twig file
-    //     $html = $this->renderView('customer/billDownload.html.twig', [
-    //         'order' => $order,
-    //         'base64' => $base64
-    //     ]);
+        // // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        // $dompdf->setPaper('A4', 'portrait');
 
-    //     // Load HTML to Dompdf
-    //     $dompdf->loadHtml($html);
+        // // Render the HTML as PDF
+        // $dompdf->render();
 
-    //     // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-    //     $dompdf->setPaper('A4', 'portrait');
-
-    //     // Render the HTML as PDF
-    //     $dompdf->render();
-
-    //     // Output the generated PDF to Browser (inline view)
-    //     $dompdf->stream("mypdf.pdf", [
-    //         "Attachment" => true
-    //     ]);
-    // }
+        // // Output the generated PDF to Browser (inline view)
+        // $dompdf->stream("mypdf.pdf", [
+        //     "Attachment" => true
+        // ]);        
+        
+        
+        return $this->render('home/cv.html.twig', [
+            'skillsAndFeatures' => $skillsAndFeaturesRepository->findAll(),
+            'experiencesAndEducations' => $experiencesAndEducationsRepository->findAll(),
+            'websites' => $webSitesRepository->findAll(),
+            'socialNetworks' => $socialNetworksRepository->findAll(),
+            'me' => $user->getFirstname().' '.$user->getLastname(),
+            'Adress' => $user->getLocation(),
+            'Email' => $user->getEmail(),
+            'occupation' => $user->getOccupation(),
+            'photo' => $user->getImage(),
+            'photoAlt' => $user->getAlt(),
+            'age' => date_diff(new \DateTime('now'), $user->getBornAt())->format('%Y'),
+            'content' => $user->getContent(),
+            // 'base64' => $base64
+        ]);
+    }
 }
