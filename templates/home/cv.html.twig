@@ -2,9 +2,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8">
-
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
@@ -19,32 +17,36 @@
 				<!-- The Grid -->
 				<div class="w3-row-padding">
 
-                    <section class="w3-container w3-white w3-text-grey w3-card-4 w3-margin-bottom">
+                    <section class="w3-container w3-white w3-text-grey w3-card-4 w3-margin-bottom cvhead">
                         <div class="w3-col s2">
                             <img src="{{ asset('images/'~ photo )|imagine_filter('min300') }}" alt="{{ photoAlt }}" title="{{ photoAlt }}">
                         </div>
-                        <div class="w3-col s6">
-                            <h1>{{ occupation }}</h1>
-                            <h2>{{ me }}</h2>
+                        <div class="w3-col s7 message w3-padding">
+							<h1>{{ me }}</h1>
+                            <h2 class="w3-text-teal bold">{{ occupation }}</h2>
                             <p>{{ content }}</p>
                         </div>
-						<div class="w3-col s4">
-                            <address> 
+						<div class="w3-col s3 w3-padding">
+                            <address>
 								<p>
 									<span class="w3-margin-right w3-text-teal"><i class="fa fa-envelope"></i></span>{{ Email }}
                                 </p>
                                 <p>
 									<span class="w3-margin-right w3-text-teal"><i class="fa fa-home"></i></span>{{ Adress }}</p>
+								<p>
+									<span class="w3-margin-right w3-text-teal"><i class="fa fa-phone"></i></span>{{ Phone }}</p>
                             </address>
+                            {% for socialNetwork in socialNetworks|filter(socialNetwork => socialNetwork.cvOrSite == 0 or socialNetwork.cvOrSite == 1) %}
+                                <p>
+									<span class="w3-margin-right w3-text-teal">
+										{{ socialNetwork.logo|replace({'fill="#FC5656"': 'fill="#009688"'})|raw }}
+									</span>{{ socialNetwork.url|replace({'http://': '','https://': '', 'linkedin.com/in/':'', 'github.com/':''}) }}
+								</p>
+                            {% endfor %}
                             <p>
 								<span class="w3-margin-right w3-text-teal"><i class="fa fa-car"></i></span>Permis B - Véhicule personnel</p>
                             <p>
 								<span class="w3-margin-right w3-text-teal"><i class="fa fa-calendar"></i></span>{{ age }} ans</p>
-
-                            {% for socialNetwork in socialNetworks %}
-                                <p><span class="w3-margin-right w3-text-teal">{{ socialNetwork.logo|raw }}</span>{{ socialNetwork.url|replace({'http://': '','https://': ''}) }}</p>
-                            {% endfor %}
-                            
 						</div>
                     </section>
 
@@ -85,7 +87,7 @@
 							<h2 class="w3-text-grey w3-padding-16">
 								<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Expériences</h2>
 
-							{% include "home/_projectsNoPicture.html.twig" %}
+							{% include "home/_projectsCV.html.twig" %}
 
 							{% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 1)|sort((a, b) => a.positionOrder <=> b.positionOrder) %}
 								{% include "home/_experienceAndEducationCV.html.twig" %}

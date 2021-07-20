@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210719104207 extends AbstractMigration
+final class Version20210720083330 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -29,6 +29,7 @@ final class Version20210719104207 extends AbstractMigration
         $this->addSql('DROP TABLE links');
         $this->addSql('DROP TABLE posts');
         $this->addSql('DROP TABLE users');
+        $this->addSql('ALTER TABLE social_networks CHANGE on_cv cv_or_site INT DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
@@ -43,5 +44,6 @@ final class Version20210719104207 extends AbstractMigration
         $this->addSql('ALTER TABLE comments ADD CONSTRAINT FK_5F9E962A4B89032C FOREIGN KEY (post_id) REFERENCES posts (id) ON UPDATE NO ACTION ON DELETE NO ACTION');
         $this->addSql('ALTER TABLE images ADD CONSTRAINT FK_E01FBE6A4B89032C FOREIGN KEY (post_id) REFERENCES posts (id) ON UPDATE NO ACTION ON DELETE NO ACTION');
         $this->addSql('ALTER TABLE posts ADD CONSTRAINT FK_885DBAFA12469DE2 FOREIGN KEY (category_id) REFERENCES categories (id) ON UPDATE NO ACTION ON DELETE NO ACTION');
+        $this->addSql('ALTER TABLE social_networks CHANGE cv_or_site on_cv INT DEFAULT NULL');
     }
 }

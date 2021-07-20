@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\SocialNetworks;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -26,7 +27,7 @@ class SocialNetworksType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'required' => true,
-                'label' => 'Contenu dans attribut balise <a> : ',
+                'label' => 'Titre : ',
 
                 // 'constraints' => [
                 //     new NotBlank([
@@ -45,14 +46,23 @@ class SocialNetworksType extends AbstractType
             ])
             ->add('url', UrlType::class, [
                 'required' => true,
-                'label' => 'Lien hypertexte',
+                'label' => 'Url',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez saisir Lien hypertexte',
+                        'message' => 'Veuillez saisir l\'url',
                     ]),
                     new Url([
-                        'message' => 'Veuillez saisir Lien hypertexte',
+                        'message' => 'Veuillez saisir l\'url',
                     ]),
+                ],
+            ])
+            ->add('cv_or_site', ChoiceType::class, [
+                'label' => 'visible sur le cv ou sur le site ? ',
+                'required' => true,
+                'choices' => [
+                    'Les deux' => 0,
+                    'Sur le cv' => 1,
+                    'Sur le site' => 2
                 ],
             ])
         ;

@@ -1,0 +1,13 @@
+<ul id="websitesCV" class="w3-text-gray" >
+	{% for website in websites %}
+		<li class="w3-margin-bottom">
+			<span class="w3-text-teal">{{ website.name|raw }}</span>
+			{% if website.url %}
+				<p>Site : {{ website.url|replace({'http://': '','https://': ''}) }}</p>
+			{% endif %}
+			{% if website.repoUrl %}
+				<p>Dépôt : {{ website.repoUrl|replace({'http://': '','https://': ''}) }}</p>
+			{% endif %}
+		</li>
+	{% endfor %}
+</ul>

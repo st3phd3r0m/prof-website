@@ -34,6 +34,7 @@
 				<thead>
 					<tr>
 						<th>Title</th>
+						<th>On cv or site ?</th>
 						<th>Logo</th>
 						<th>Url</th>
 						<th>actions</th>
@@ -43,7 +44,8 @@
 				{% for social_network in social_networks %}
 					<tr>
 						<td>{{ social_network.title }}</td>
-						<td>{{ social_network.logo }}</td>
+						<td>{{ social_network.cvOrSite}}</td>
+						<td>{{ social_network.Logo}}</td>
 						<td>{{ social_network.url }}</td>
 						<td>
 							<a href="{{ path('social_networks_show', {'id': social_network.id}) }}">show</a>

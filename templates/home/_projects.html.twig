@@ -8,6 +8,9 @@
 			<div>
 				<p class="description">
 					{{ website.name|raw }}
+					{% if  website.repoUrl %}
+					<a href="{{ website.repoUrl }}" title="Voir sur Github" target="_blank">Voir sur Github</a>
+					{% endif %}
 				</p>
 			</div>
 		</figure>

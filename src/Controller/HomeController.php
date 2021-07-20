@@ -191,6 +191,7 @@ class HomeController extends AbstractController
             'me' => $user->getFirstname().' '.$user->getLastname(),
             'Adress' => $user->getLocation(),
             'Email' => $user->getEmail(),
+            'Phone' => $user->getPhone(),
             'occupation' => $user->getOccupation(),
             'photo' => $user->getImage(),
             'photoAlt' => $user->getAlt(),

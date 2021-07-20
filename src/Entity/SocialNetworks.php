@@ -36,6 +36,12 @@ class SocialNetworks
      */
     private $url;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     * @var int
+     */
+    private $cv_or_site;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -73,6 +79,18 @@ class SocialNetworks
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getCvOrSite(): ?int
+    {
+        return $this->cv_or_site;
+    }
+
+    public function setCvOrSite(?int $cv_or_site): self
+    {
+        $this->cv_or_site = $cv_or_site;
 
         return $this;
     }

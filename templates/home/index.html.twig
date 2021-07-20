@@ -42,12 +42,13 @@
 
 {% block header %}
 	<div class="w3-text-light-gray">
-		<h1>{{ occupation }}</h1>
-		<p>{{ me }}</p>
+		<h1>{{ me }}</h1>
+		<p>{{ occupation}}</p>
 		<p>{{ content }}</p>
+		<a href="{{ path('download_cv') }}" target="_blank" title="Télécharger ce CV en pdf">Télécharger ce CV en pdf<i class="las la-external-link-alt"></i></a>
 		<p>
-			{% for socialNetwork in socialNetworks %}
-				<a href="{{ socialNetwork.url }}" target="_blank" title="{{ socialNetwork.title }}" class="w3-hover-opacity">{{ socialNetwork.logo|raw }}</a>
+			{% for socialNetwork in socialNetworks|filter(socialNetwork => socialNetwork.cvOrSite == 0 or socialNetwork.cvOrSite == 2) %}
+				<a href="{{ socialNetwork.url }}" target="_blank" title="{{ socialNetwork.title }}" class="w3-hover-opacity">{{ socialNetwork.logo|replace({'fill="#FC5656"': 'fill="#f1f1f1"'})|raw }}</a>
 			{% endfor %}
 		</p>
 	</div>
@@ -95,8 +96,8 @@
 
 				<section class="w3-container">
 					<p class="w3-center">
-						{% for socialNetwork in socialNetworks %}
-							<a href="{{ socialNetwork.url }}" target="_blank" title="{{ socialNetwork.title }}" class="w3-hover-opacity">{{ socialNetwork.logo|raw }}</a>
+						{% for socialNetwork in socialNetworks|filter(socialNetwork => socialNetwork.cvOrSite == 0 or socialNetwork.cvOrSite == 2) %}
+							<a href="{{ socialNetwork.url }}" target="_blank" title="{{ socialNetwork.title }}" class="w3-hover-opacity">{{ socialNetwork.logo|replace({'fill="#FC5656"': 'fill="#757575"'})|raw }}</a>
 						{% endfor %}
 					</p>
 				</section>
