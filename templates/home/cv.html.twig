@@ -5,6 +5,9 @@
 
 		{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> #}
 		<style type="text/css">
+		    .bold {
+            	font-weight: bold;
+        	}
 			{% set compt = 0 %}
 			{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 0) %}
 				#skillAndFeature{{ compt }} {
@@ -36,24 +39,29 @@
 			<div class="w3-col s3">
 				<address>
 					<p>
-						<span class="w3-margin-right w3-text-teal"><i class="fa fa-envelope"></i></span>{{ Email }}
+						<span class="w3-text-teal"><i class="fa">&#xf0e0;</i></span>&nbsp;
+						{{ Email }}
 					</p>
 					<p>
-						<span class="w3-margin-right w3-text-teal"><i class="fa fa-home"></i></span>{{ Adress }}</p>
+						<span class="w3-text-teal"><i class="fa">&#xf015;</i></span>&nbsp;
+						{{ Adress }}</p>
 					<p>
-						<span class="w3-margin-right w3-text-teal"><i class="fa fa-phone"></i></span>{{ Phone }}</p>
+						<span class="w3-text-teal"><i class="fa">&#xf095;</i></span>&nbsp;
+						{{ Phone }}</p>
 				</address>
 				{% for socialNetwork in socialNetworks|filter(socialNetwork => socialNetwork.cvOrSite == 0 or socialNetwork.cvOrSite == 1) %}
 					<p>
-						<span class="w3-margin-right w3-text-teal">
-							{{ socialNetwork.logo|replace({'fill="#FC5656"': 'fill="#009688"'})|raw }}
+						<span class="w3-text-teal">
+							{{ socialNetwork.logo|replace({'fill="#FC5656"': 'fill="#009688"', 'fa-github">': '">&#xf09b', 'fa-link">': '">&#xf0c1', 'fa-linkedin">': '">&#xf0e1' })|raw }}
 						</span>{{ socialNetwork.url|replace({'http://': '','https://': '', 'linkedin.com/in/':'', 'github.com/':''}) }}
+
+						 {# 'fa-linkedin">': '>&#xf0e1'  #}
 					</p>
 				{% endfor %}
 				<p>
-					<span class="w3-margin-right w3-text-teal"><i class="fa fa-car"></i></span>Permis B - Véhicule personnel</p>
+					<span class="w3-text-teal"><i class="fa">&#xf1b9;</i></span>&nbsp; Permis B - Véhicule personnel</p>
 				<p>
-					<span class="w3-margin-right w3-text-teal"><i class="fa fa-calendar"></i></span>{{ age }} ans</p>
+					<span class="w3-text-teal"><i class="fa">&#xf073;</i></span>&nbsp; {{ age }} ans</p>
 			</div>
 		</header>
 
@@ -65,7 +73,7 @@
 
 					<section id="competences">
 						<h3>
-							<i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Compétences</h3>
+							<i class="fa fa-fw w3-margin-right w3-text-teal">&#xf069;</i>&nbsp; Compétences</h3>
 
 						{% set compt = 0 %}
 						{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 0) %}
@@ -76,7 +84,7 @@
 
 					<section id="atouts">
 						<h3>
-							<i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Atouts</h3>
+							<i class="fa fa-fw w3-margin-right w3-text-teal">&#xf069;</i>&nbsp; Atouts</h3>
 
 						{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 1) %}
 							{% include "home/_skillAndFeature.html.twig" %}
@@ -92,7 +100,7 @@
 
 					<section class="w3-margin-bottom" id="experiences">
 						<h3>
-							<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Expériences</h3>
+							<i class="fa fa-fw w3-margin-right w3-xxlarge w3-text-teal">&#xf0f2;</i>&nbsp; Expériences</h3>
 
 						{% include "home/_projectsCV.html.twig" %}
 
@@ -104,7 +112,7 @@
 
 					<section id="formation">
 						<h3>
-							<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Formation</h3>
+							<i class="fa fa-fw w3-margin-right w3-xxlarge w3-text-teal">&#xf0a3;</i>&nbsp; Formation</h3>
 
 						{% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 0)|sort((a, b) => a.positionOrder <=> b.positionOrder) %}
 							{% include "home/_experienceAndEducationCV.html.twig" %}

@@ -11,9 +11,10 @@ use App\Repository\SocialNetworksRepository;
 use App\Repository\UserImagesRepository;
 use App\Repository\UserRepository;
 use App\Repository\WebSitesRepository;
-use Dompdf\Dompdf;
-use Dompdf\Options;
+use Mpdf\Config\ConfigVariables;
+use Mpdf\Config\FontVariables;
 use Mpdf\HTMLParserMode;
+use Mpdf\Mpdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,18 +22,21 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface;
 
 class HomeController extends AbstractController
 {
     private MailerInterface $mailer;
     private UserRepository $userRepository;
     private UserImagesRepository $userImagesRepository;
+    private EntrypointLookupInterface $entrypointLookup;
 
-    public function __construct(MailerInterface $mailer, UserRepository $userRepository, UserImagesRepository $userImagesRepository)
+    public function __construct(MailerInterface $mailer, UserRepository $userRepository, UserImagesRepository $userImagesRepository, EntrypointLookupInterface $entrypointLookup)
     {
         $this->mailer = $mailer;
         $this->userRepository = $userRepository;
         $this->userImagesRepository = $userImagesRepository;
+        $this->entrypointLookup = $entrypointLookup;
     }
 
     /**
@@ -149,10 +153,7 @@ class HomeController extends AbstractController
         $data = file_get_contents($path);
         $photo = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-
         $user = $this->userRepository->findOneBy(['firstname' => 'Stéphane', 'lastname' => 'Derom']);
-
-
 
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('home/cv.html.twig', [
@@ -171,19 +172,34 @@ class HomeController extends AbstractController
             'content' => $user->getContent()
         ]);
 
+        $defaultConfig = (new ConfigVariables())->getDefaults();
+        $fontDirs = $defaultConfig['fontDir'];
 
-        $mpdf = new \Mpdf\Mpdf([
+        $defaultFontConfig = (new FontVariables())->getDefaults();
+        $fontData = $defaultFontConfig['fontdata'];
+
+        $mpdf = new Mpdf([
+            'fontDir' => array_merge($fontDirs, [
+                dirname(__DIR__, 2).'/assets/css/',
+            ]),
+            'fontdata' => $fontData + [
+                'fontawesome' => [
+                    'R' => 'fontawesome-webfont.ttf'
+                ],
+            ],
             'margin_top' => 5,
             'margin_left' => 5,
             'margin_right' => 2,
             'mirrorMargins' => true
         ]);
+        $mpdf->allow_charset_conversion = true; 
+        foreach ($this->entrypointLookup->getCssFiles('pdf') as  $value) {
+            $stylesheet = file_get_contents('../public/'.$value);
+            $mpdf->WriteHTML($stylesheet, HTMLParserMode::HEADER_CSS);
+        }
 
-        $stylesheet = file_get_contents('../public/build/pdf.css');
-        $mpdf->WriteHTML($stylesheet, HTMLParserMode::HEADER_CSS);
-        $stylesheet = file_get_contents('../public/build/assets_css_normalize_css-assets_css_w3_css.css');
-        $mpdf->WriteHTML($stylesheet, HTMLParserMode::HEADER_CSS);
-    
+        // $stylesheet = file_get_contents('../assets/css/fontawesome.min.css');
+        // $mpdf->WriteHTML($stylesheet,1);
         $mpdf->WriteHTML($html, HTMLParserMode::DEFAULT_MODE);
         $mpdf->Output();
     }

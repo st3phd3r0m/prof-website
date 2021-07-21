@@ -1,9 +1,15 @@
 body {
+    .fa {
+        font-family: fontawesome;
+    }
+
+    
 
     i.fa,
     i.la {
-        font-size: 2rem;
+        font-size: 1rem;
         margin: 0 3px 0 3px;
+        font-style: normal;
     }
 
     svg {
@@ -49,10 +55,6 @@ body {
     }
 
     main {
-
-        .bold {
-            font-weight: bold;
-        }
 
         aside {
 
