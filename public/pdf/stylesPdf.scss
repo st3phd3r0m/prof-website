@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    font-size: 20px;
+
+    i.fa,
+    i.la {
+        font-size: 2rem;
+        margin: 0 3px 0 3px;
+    }
+
+    svg {
+        position: relative;
+        width: 100px;
+        top: 12px;
+        margin: 0 3px 0 3px;
+    }
+
+    main {
+
+        .bold {
+            font-weight: bolder;
+        }
+
+        .cvhead{
+            p {
+                margin: 0;
+            }
+            div{
+                margin-top: 20px;
+            }
+
+            img {
+                width: 100%;
+                border-radius: 25%;
+                padding: 10px;
+            }
+
+            .message{
+                >p{
+                    font-style: italic;
+                }
+                >h1{
+                    margin-bottom: 0;
+                }
+                >h2{
+                    margin-top: 0;
+                }
+            }
+
+            i{
+                text-align: center;
+                font-size: 1.5rem;
+            }
+        }
+
+        aside {
+
+            h2,
+            h3 {
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+
+            p {
+                margin: 0;
+            }
+
+            .barre {
+                width: 100%;
+                height: 20px;
+                border-radius: 10px;
+                margin-bottom: 40px;
+            }
+        }
+
+        article {
+
+            @media screen and (max-width : 992px) {
+                padding: 0 !important;
+            }
+
+            padding: inherit;
+
+            #websitesCV {
+                >li{
+                    >p{
+                        margin: 0 0 0 20px;
+                    }
+                }
+            }
+        }
+
+    }
+}

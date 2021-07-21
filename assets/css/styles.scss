@@ -1,17 +1,5 @@
-// @font-face {
-//     font-family: 'abelregular';
-//     src: url('abel-regular-webfont.eot');
-//     src: url('abel-regular-webfont.eot?#iefix') format('embedded-opentype'),
-//         url('abel-regular-webfont.woff') format('woff'),
-//         url('abel-regular-webfont.ttf') format('truetype'),
-//         url('abel-regular-webfont.svg#abelregular') format('svg');
-//     font-weight: normal;
-//     font-style: normal;
-// }
-
 body {
     margin: 0;
-    // font-family: abelregular !important;
     font-size: 20px;
 
     i.fa,
@@ -167,38 +155,6 @@ body {
             font-weight: bolder;
         }
 
-        .cvhead{
-            p {
-                margin: 0;
-            }
-            div{
-                margin-top: 20px;
-            }
-
-            img {
-                width: 100%;
-                border-radius: 25%;
-                padding: 10px;
-            }
-
-            .message{
-                >p{
-                    font-style: italic;
-                }
-                >h1{
-                    margin-bottom: 0;
-                }
-                >h2{
-                    margin-top: 0;
-                }
-            }
-
-            i{
-                text-align: center;
-                font-size: 1.5rem;
-            }
-        }
-
         aside {
 
             h2,
@@ -233,7 +189,6 @@ body {
                 margin-bottom: 40px;
 
                 >div {
-                    width: 50%;
                     height: 100%;
                     border-radius: 10px;
                 }
@@ -242,10 +197,6 @@ body {
             a[href^="mailto"] {
                 text-decoration: none;
             }
-
-            // svg {
-            //     filter: grayscale(100%);
-            // }
         }
 
         article {
@@ -327,16 +278,6 @@ body {
                     }
                 }
             }
-
-            #websitesCV {
-                >li{
-                    >p{
-                        margin: 0 0 0 20px;
-                    }
-                }
-            }
-
-
         }
 
         #contact {

@@ -8,6 +8,7 @@ use App\Repository\ExperiencesAndEducationsRepository;
 use App\Repository\PublicationsRepository;
 use App\Repository\SkillsAndFeaturesRepository;
 use App\Repository\SocialNetworksRepository;
+use App\Repository\UserImagesRepository;
 use App\Repository\UserRepository;
 use App\Repository\WebSitesRepository;
 use Dompdf\Dompdf;
@@ -24,11 +25,13 @@ class HomeController extends AbstractController
 {
     private MailerInterface $mailer;
     private UserRepository $userRepository;
+    private UserImagesRepository $userImagesRepository;
 
-    public function __construct(MailerInterface $mailer, UserRepository $userRepository)
+    public function __construct(MailerInterface $mailer, UserRepository $userRepository, UserImagesRepository $userImagesRepository)
     {
         $this->mailer = $mailer;
         $this->userRepository = $userRepository;
+        $this->userImagesRepository = $userImagesRepository;
     }
 
     /**
@@ -69,6 +72,7 @@ class HomeController extends AbstractController
         }
 
         $user = $this->userRepository->findOneBy(['firstname' => 'Stéphane', 'lastname' => 'Derom']);
+        $photo = $this->userImagesRepository->findAll()[0];
 
         return $this->render('home/index.html.twig', [
             'skillsAndFeatures' => $skillsAndFeaturesRepository->findAll(),
@@ -80,8 +84,8 @@ class HomeController extends AbstractController
             'Adress' => $user->getLocation(),
             'Email' => $user->getEmail(),
             'occupation' => $user->getOccupation(),
-            'photo' => $user->getImage(),
-            'photoAlt' => $user->getAlt(),
+            'photo' => $photo->getName(),
+            'photoAlt' => $photo->getAlt(),
             'age' => date_diff(new \DateTime('now'), $user->getBornAt())->format('%Y'),
             'content' => $user->getContent(),
             'form' => $formContact->createView(),
@@ -133,57 +137,26 @@ class HomeController extends AbstractController
      */
     public function cvDownload(SkillsAndFeaturesRepository $skillsAndFeaturesRepository,
     ExperiencesAndEducationsRepository $experiencesAndEducationsRepository, WebSitesRepository $webSitesRepository,
-    SocialNetworksRepository $socialNetworksRepository): Response
+    SocialNetworksRepository $socialNetworksRepository)
     {
-        // $path = 'images/miscellaneous/logo.png';
-        // $type = pathinfo($path, PATHINFO_EXTENSION);
-        // $data = file_get_contents($path);
-        // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        $userImage = $this->userImagesRepository->findAll()[0];
 
+        $path = 'images/'.str_replace('webp','jpg', $userImage->getName());
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $photo = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
         $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
+        // $pdfOptions->set('defaultFont', 'Arial');
 
         // Instantiate Dompdf with our options
         $dompdf = new Dompdf($pdfOptions);
 
+
         $user = $this->userRepository->findOneBy(['firstname' => 'Stéphane', 'lastname' => 'Derom']);
 
-        // // Retrieve the HTML generated in our twig file
-        // $html = $this->renderView('home/cv.html.twig', [
-        //     'skillsAndFeatures' => $skillsAndFeaturesRepository->findAll(),
-        //     'experiencesAndEducations' => $experiencesAndEducationsRepository->findAll(),
-        //     'websites' => $webSitesRepository->findAll(),
-        //     'socialNetworks' => $socialNetworksRepository->findAll(),
-        //     'me' => $user->getFirstname().' '.$user->getLastname(),
-        //     'Adress' => $user->getLocation(),
-        //     'Email' => $user->getEmail(),
-        //     'occupation' => $user->getOccupation(),
-        //     'photo' => $user->getImage(),
-        //     'photoAlt' => $user->getAlt(),
-        //     'age' => date_diff(new \DateTime('now'), $user->getBornAt())->format('%Y'),
-        //     'content' => $user->getContent(),
-        //     // 'base64' => $base64
-        // ]);
-
-
-
-        // // Load HTML to Dompdf
-        // $dompdf->loadHtml($html);
-
-        // // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-        // $dompdf->setPaper('A4', 'portrait');
-
-        // // Render the HTML as PDF
-        // $dompdf->render();
-
-        // // Output the generated PDF to Browser (inline view)
-        // $dompdf->stream("mypdf.pdf", [
-        //     "Attachment" => true
-        // ]);        
-        
-        
-        return $this->render('home/cv.html.twig', [
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('home/cv.html.twig', [
             'skillsAndFeatures' => $skillsAndFeaturesRepository->findAll(),
             'experiencesAndEducations' => $experiencesAndEducationsRepository->findAll(),
             'websites' => $webSitesRepository->findAll(),
@@ -193,11 +166,24 @@ class HomeController extends AbstractController
             'Email' => $user->getEmail(),
             'Phone' => $user->getPhone(),
             'occupation' => $user->getOccupation(),
-            'photo' => $user->getImage(),
-            'photoAlt' => $user->getAlt(),
+            'photo' => $photo,
+            'photoAlt' => $userImage->getAlt(),
             'age' => date_diff(new \DateTime('now'), $user->getBornAt())->format('%Y'),
-            'content' => $user->getContent(),
-            // 'base64' => $base64
+            'content' => $user->getContent()
         ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (inline view)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => true
+        ]);        
     }
 }

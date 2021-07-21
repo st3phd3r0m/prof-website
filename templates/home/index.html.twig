@@ -40,6 +40,24 @@
 	{{ occupation }}
 {% endblock %}
 
+{% block stylesheets %}
+<style>
+{% set compt = 0 %}
+{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 0) %}
+	#skillAndFeature{{ compt }} {
+		width: {{ skillAndFeature.rate }}%;
+	}
+	{% set compt = compt + 1 %}
+{% endfor %}
+{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 1) %}
+	#skillAndFeature{{ compt }} {
+		width: {{ skillAndFeature.rate }}%;
+	}
+	{% set compt = compt + 1 %}
+{% endfor %}
+</style>
+{% endblock %}
+
 {% block header %}
 	<div class="w3-text-light-gray">
 		<h1>{{ me }}</h1>
@@ -102,14 +120,13 @@
 					</p>
 				</section>
 
-
 				<section class="w3-container" id="competences">
 					<h3><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Compétences</h3>
 
+					{% set compt = 0 %}
 					{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 0) %}
-
 						{% include "home/_skillAndFeature.html.twig" %}
-
+						{% set compt = compt + 1 %}
 					{% endfor %}
 
 				</section>
@@ -118,9 +135,8 @@
 					<h3><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Atouts</h3>
 
 					{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 1) %}
-
 						{% include "home/_skillAndFeature.html.twig" %}
-
+						{% set compt = compt + 1 %}
 					{% endfor %}
 
 				</section>

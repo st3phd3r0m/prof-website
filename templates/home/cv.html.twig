@@ -2,24 +2,50 @@
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<style type="text/css">
+			{# {{ fileGetContents( 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' ) }} #}
+			{{ fileGetContents( '../public/pdf/normalize.min.css' ) }}
+			{{ fileGetContents( '../public/pdf/w3.min.css' ) }}
+			{{ fileGetContents( '../public/pdf/stylesPdf.min.css' ) }}
+
+			{% set compt = 0 %}
+			{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 0) %}
+				#skillAndFeature{{ compt }} {
+					width: {{ skillAndFeature.rate }}%;
+					height: 100%;
+                    border-radius: 10px ;
+				}
+				{% set compt = compt + 1 %}
+			{% endfor %}
+			{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 1) %}
+				#skillAndFeature{{ compt }} {
+					width: {{ skillAndFeature.rate }}%;
+					height: 100%;
+                    border-radius: 10px ;
+				}
+				{% set compt = compt + 1 %}
+			{% endfor %}
+
+    	</style>
+
+		{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
-		{% endblock %}
+		{% endblock %} #}
 
 	</head>
 	<body class="w3-light-grey">
 
 		<main>
-			<div
-				id="mainContainer" class="w3-content w3-margin-top">
+			<div class="w3-content w3-margin-top">
 
 				<!-- The Grid -->
 				<div class="w3-row-padding">
 
                     <section class="w3-container w3-white w3-text-grey w3-card-4 w3-margin-bottom cvhead">
                         <div class="w3-col s2">
-                            <img src="{{ asset('images/'~ photo )|imagine_filter('min300') }}" alt="{{ photoAlt }}" title="{{ photoAlt }}">
+                            <img src="{{ photo }}" alt="{{ photoAlt }}" title="{{ photoAlt }}">
                         </div>
                         <div class="w3-col s7 message w3-padding">
 							<h1>{{ me }}</h1>
@@ -57,10 +83,10 @@
 							<h3>
 								<i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Compétences</h3>
 
+							{% set compt = 0 %}
 							{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 0) %}
-
 								{% include "home/_skillAndFeature.html.twig" %}
-
+								{% set compt = compt + 1 %}
 							{% endfor %}
 
 						</section>
@@ -70,9 +96,8 @@
 								<i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Atouts</h3>
 
 							{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 1) %}
-
 								{% include "home/_skillAndFeature.html.twig" %}
-
+								{% set compt = compt + 1 %}
 							{% endfor %}
 
 						</section>
@@ -113,8 +138,8 @@
 				<!-- End Page Container -->
 			</div>
 		</main>
-		{% block javascripts %}
+		{# {% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
+		{% endblock %} #}
 	</body>
 </html>

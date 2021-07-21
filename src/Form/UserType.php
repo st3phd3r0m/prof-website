@@ -79,29 +79,6 @@ class UserType extends AbstractType
                 'required' => false,
                 'label' => 'Contenu de l\'élément : ',
             ])
-            ->add('imageFile', VichImageType::class, [
-                'required' => false,
-                'label' => 'Image de présentation',
-                'download_link' => false,
-                'imagine_pattern' => 'miniatures',
-                'constraints' => [
-                    new Image([
-                        'maxSize' => '2M',
-                        'maxSizeMessage' => 'Votre image dépasse les 2Mo',
-                        'mimeTypes' => ['image/webp'],
-                        'mimeTypesMessage' => 'Votre image doit être de type WEBP',
-                    ]),
-                ],
-            ])
-            ->add('alt', TextType::class, [
-                'required' => true,
-                'label' => 'Texte alternatif : ',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez saisir un texte.',
-                    ]),
-                ],
-            ])
             ->add('location', TextType::class, [
                 'required' => false,
                 'label' => 'Adresse : ',

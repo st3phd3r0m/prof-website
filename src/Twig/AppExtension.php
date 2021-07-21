@@ -12,6 +12,7 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFunction('showNumberOfWebSites', [$this, 'numberOfWebSites']),
+            new TwigFunction('fileGetContents', [$this, 'fileGetContents']),
         ];
     }
 
@@ -25,5 +26,10 @@ class AppExtension extends AbstractExtension
     public function numberOfWebSites(): int
     {
         return count($this->webSitesRepository->findAll());
+    }
+
+    public function fileGetContents($file)
+    {
+      return file_get_contents($file);
     }
 }

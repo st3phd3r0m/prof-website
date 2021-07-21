@@ -68,25 +68,6 @@
                         <th>Content</th>
                         <td>{{ user.content }}</td>
                     </tr>
-                    <tr>
-                        <th>Image</th>
-                        <td>
-                            {% if user.image is not empty %}
-                            <img src="{{ asset('images/'~ user.image ) | imagine_filter('miniatures') }}" alt="{{ user.alt }}">
-                            {% endif %}
-                        </td>
-                    </tr>
-                    <tr>
-                    	<th>Alt</th>
-                        <td>
-                            {{ user.alt }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Updated_at</th>
-                        <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                    </tr>
-
 					<tr>
 						<th>Roles</th>
 						<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
