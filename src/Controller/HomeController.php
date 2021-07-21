@@ -13,6 +13,7 @@ use App\Repository\UserRepository;
 use App\Repository\WebSitesRepository;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Mpdf\HTMLParserMode;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,10 +41,12 @@ class HomeController extends AbstractController
     public function index(
         SkillsAndFeaturesRepository $skillsAndFeaturesRepository,
         ExperiencesAndEducationsRepository $experiencesAndEducationsRepository,
-        PublicationsRepository $publicationsRepository, WebSitesRepository $webSitesRepository,
-        SocialNetworksRepository $socialNetworksRepository, Request $request
+        PublicationsRepository $publicationsRepository,
+        WebSitesRepository $webSitesRepository,
+        SocialNetworksRepository $socialNetworksRepository,
+        Request $request
     ): Response {
-         //Instanciation de Messages, création formulaire de contact
+        //Instanciation de Messages, création formulaire de contact
         $message = new Courriels();
         $formContact = $this->createForm(CourrielsType::class, $message);
         $formContact->handleRequest($request);
@@ -80,7 +83,7 @@ class HomeController extends AbstractController
             'publications' => $publicationsRepository->findAll(),
             'websites' => $webSitesRepository->findAll(),
             'socialNetworks' => $socialNetworksRepository->findAll(),
-            'me' => $user->getFirstname().' '.$user->getLastname(),
+            'me' => $user->getFirstname() . ' ' . $user->getLastname(),
             'Adress' => $user->getLocation(),
             'Email' => $user->getEmail(),
             'occupation' => $user->getOccupation(),
@@ -130,30 +133,26 @@ class HomeController extends AbstractController
         return $this->render('home/lacalculatrice.html.twig');
     }
 
-
     /**
      * @Route("/download/cv", name="download_cv", methods={"GET"})
-     * @param Request $request
      */
-    public function cvDownload(SkillsAndFeaturesRepository $skillsAndFeaturesRepository,
-    ExperiencesAndEducationsRepository $experiencesAndEducationsRepository, WebSitesRepository $webSitesRepository,
-    SocialNetworksRepository $socialNetworksRepository)
-    {
+    public function cvDownload(
+        SkillsAndFeaturesRepository $skillsAndFeaturesRepository,
+        ExperiencesAndEducationsRepository $experiencesAndEducationsRepository,
+        WebSitesRepository $webSitesRepository,
+        SocialNetworksRepository $socialNetworksRepository
+    ) {
         $userImage = $this->userImagesRepository->findAll()[0];
 
-        $path = 'images/'.str_replace('webp','jpg', $userImage->getName());
+        $path = 'images/' . str_replace('webp', 'jpg', $userImage->getName());
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $photo = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-        $pdfOptions = new Options();
-        // $pdfOptions->set('defaultFont', 'Arial');
-
-        // Instantiate Dompdf with our options
-        $dompdf = new Dompdf($pdfOptions);
-
 
         $user = $this->userRepository->findOneBy(['firstname' => 'Stéphane', 'lastname' => 'Derom']);
+
+
 
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('home/cv.html.twig', [
@@ -161,7 +160,7 @@ class HomeController extends AbstractController
             'experiencesAndEducations' => $experiencesAndEducationsRepository->findAll(),
             'websites' => $webSitesRepository->findAll(),
             'socialNetworks' => $socialNetworksRepository->findAll(),
-            'me' => $user->getFirstname().' '.$user->getLastname(),
+            'me' => $user->getFirstname() . ' ' . $user->getLastname(),
             'Adress' => $user->getLocation(),
             'Email' => $user->getEmail(),
             'Phone' => $user->getPhone(),
@@ -172,18 +171,20 @@ class HomeController extends AbstractController
             'content' => $user->getContent()
         ]);
 
-        // Load HTML to Dompdf
-        $dompdf->loadHtml($html);
 
-        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
-        $dompdf->setPaper('A4', 'portrait');
+        $mpdf = new \Mpdf\Mpdf([
+            'margin_top' => 5,
+            'margin_left' => 5,
+            'margin_right' => 2,
+            'mirrorMargins' => true
+        ]);
 
-        // Render the HTML as PDF
-        $dompdf->render();
-
-        // Output the generated PDF to Browser (inline view)
-        $dompdf->stream("mypdf.pdf", [
-            "Attachment" => true
-        ]);        
+        $stylesheet = file_get_contents('../public/build/pdf.css');
+        $mpdf->WriteHTML($stylesheet, HTMLParserMode::HEADER_CSS);
+        $stylesheet = file_get_contents('../public/build/assets_css_normalize_css-assets_css_w3_css.css');
+        $mpdf->WriteHTML($stylesheet, HTMLParserMode::HEADER_CSS);
+    
+        $mpdf->WriteHTML($html, HTMLParserMode::DEFAULT_MODE);
+        $mpdf->Output();
     }
 }

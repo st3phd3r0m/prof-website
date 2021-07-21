@@ -3,143 +3,121 @@
 	<head>
 		<meta charset="UTF-8">
 
+		{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> #}
 		<style type="text/css">
-			{# {{ fileGetContents( 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' ) }} #}
-			{{ fileGetContents( '../public/pdf/normalize.min.css' ) }}
-			{{ fileGetContents( '../public/pdf/w3.min.css' ) }}
-			{{ fileGetContents( '../public/pdf/stylesPdf.min.css' ) }}
-
 			{% set compt = 0 %}
 			{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 0) %}
 				#skillAndFeature{{ compt }} {
 					width: {{ skillAndFeature.rate }}%;
-					height: 100%;
-                    border-radius: 10px ;
 				}
 				{% set compt = compt + 1 %}
 			{% endfor %}
 			{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 1) %}
 				#skillAndFeature{{ compt }} {
 					width: {{ skillAndFeature.rate }}%;
-					height: 100%;
-                    border-radius: 10px ;
 				}
 				{% set compt = compt + 1 %}
 			{% endfor %}
-
     	</style>
 
-		{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-		{% endblock %} #}
 
 	</head>
-	<body class="w3-light-grey">
+	<body>
+
+		<header class="w3-row w3-text-grey w3-margin-bottom">
+			<div class="w3-col s2">
+				<img src="{{ photo }}" alt="{{ photoAlt }}" title="{{ photoAlt }}">
+			</div>
+			<div class="w3-col s6 message">
+				<h1>{{ me }}</h1>
+				<h2 class="w3-text-teal">{{ occupation }}</h2>
+				<p>{{ content }}</p>
+			</div>
+			<div class="w3-col s3">
+				<address>
+					<p>
+						<span class="w3-margin-right w3-text-teal"><i class="fa fa-envelope"></i></span>{{ Email }}
+					</p>
+					<p>
+						<span class="w3-margin-right w3-text-teal"><i class="fa fa-home"></i></span>{{ Adress }}</p>
+					<p>
+						<span class="w3-margin-right w3-text-teal"><i class="fa fa-phone"></i></span>{{ Phone }}</p>
+				</address>
+				{% for socialNetwork in socialNetworks|filter(socialNetwork => socialNetwork.cvOrSite == 0 or socialNetwork.cvOrSite == 1) %}
+					<p>
+						<span class="w3-margin-right w3-text-teal">
+							{{ socialNetwork.logo|replace({'fill="#FC5656"': 'fill="#009688"'})|raw }}
+						</span>{{ socialNetwork.url|replace({'http://': '','https://': '', 'linkedin.com/in/':'', 'github.com/':''}) }}
+					</p>
+				{% endfor %}
+				<p>
+					<span class="w3-margin-right w3-text-teal"><i class="fa fa-car"></i></span>Permis B - Véhicule personnel</p>
+				<p>
+					<span class="w3-margin-right w3-text-teal"><i class="fa fa-calendar"></i></span>{{ age }} ans</p>
+			</div>
+		</header>
 
 		<main>
-			<div class="w3-content w3-margin-top">
+			<!-- The Grid -->
 
-				<!-- The Grid -->
-				<div class="w3-row-padding">
+				<!-- Left Column -->
+				<aside class="w3-col s3 w3-text-grey">
 
-                    <section class="w3-container w3-white w3-text-grey w3-card-4 w3-margin-bottom cvhead">
-                        <div class="w3-col s2">
-                            <img src="{{ photo }}" alt="{{ photoAlt }}" title="{{ photoAlt }}">
-                        </div>
-                        <div class="w3-col s7 message w3-padding">
-							<h1>{{ me }}</h1>
-                            <h2 class="w3-text-teal bold">{{ occupation }}</h2>
-                            <p>{{ content }}</p>
-                        </div>
-						<div class="w3-col s3 w3-padding">
-                            <address>
-								<p>
-									<span class="w3-margin-right w3-text-teal"><i class="fa fa-envelope"></i></span>{{ Email }}
-                                </p>
-                                <p>
-									<span class="w3-margin-right w3-text-teal"><i class="fa fa-home"></i></span>{{ Adress }}</p>
-								<p>
-									<span class="w3-margin-right w3-text-teal"><i class="fa fa-phone"></i></span>{{ Phone }}</p>
-                            </address>
-                            {% for socialNetwork in socialNetworks|filter(socialNetwork => socialNetwork.cvOrSite == 0 or socialNetwork.cvOrSite == 1) %}
-                                <p>
-									<span class="w3-margin-right w3-text-teal">
-										{{ socialNetwork.logo|replace({'fill="#FC5656"': 'fill="#009688"'})|raw }}
-									</span>{{ socialNetwork.url|replace({'http://': '','https://': '', 'linkedin.com/in/':'', 'github.com/':''}) }}
-								</p>
-                            {% endfor %}
-                            <p>
-								<span class="w3-margin-right w3-text-teal"><i class="fa fa-car"></i></span>Permis B - Véhicule personnel</p>
-                            <p>
-								<span class="w3-margin-right w3-text-teal"><i class="fa fa-calendar"></i></span>{{ age }} ans</p>
-						</div>
-                    </section>
+					<section id="competences">
+						<h3>
+							<i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Compétences</h3>
 
-					<!-- Left Column -->
-					<aside class="w3-col l4 w3-white w3-text-grey w3-card-4 w3-margin-bottom">
+						{% set compt = 0 %}
+						{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 0) %}
+							{% include "home/_skillAndFeature.html.twig" %}
+							{% set compt = compt + 1 %}
+						{% endfor %}
+					</section>
 
-						<section class="w3-container" id="competences">
-							<h3>
-								<i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Compétences</h3>
+					<section id="atouts">
+						<h3>
+							<i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Atouts</h3>
 
-							{% set compt = 0 %}
-							{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 0) %}
-								{% include "home/_skillAndFeature.html.twig" %}
-								{% set compt = compt + 1 %}
-							{% endfor %}
+						{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 1) %}
+							{% include "home/_skillAndFeature.html.twig" %}
+							{% set compt = compt + 1 %}
+						{% endfor %}
+					</section>
+				</aside>
 
-						</section>
+				<!-- End Left Column -->
 
-						<section class="w3-container" id="atouts">
-							<h3>
-								<i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Atouts</h3>
+				<!-- Right Column -->
+				<article class="w3-col s8 w3-text-grey">
 
-							{% for skillAndFeature in skillsAndFeatures|filter(skillAndFeature => skillAndFeature.skillOrFeature == 1) %}
-								{% include "home/_skillAndFeature.html.twig" %}
-								{% set compt = compt + 1 %}
-							{% endfor %}
+					<section class="w3-margin-bottom" id="experiences">
+						<h3>
+							<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Expériences</h3>
 
-						</section>
-					</aside>
+						{% include "home/_projectsCV.html.twig" %}
 
-					<!-- End Left Column -->
+						{% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 1)|sort((a, b) => a.positionOrder <=> b.positionOrder) %}
+							{% include "home/_experienceAndEducationCV.html.twig" %}
+						{% endfor %}
 
-					<!-- Right Column -->
-					<article class="w3-col l8">
+					</section>
 
-						<section class="w3-container w3-card w3-white w3-margin-bottom" id="experiences">
-							<h2 class="w3-text-grey w3-padding-16">
-								<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Expériences</h2>
+					<section id="formation">
+						<h3>
+							<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Formation</h3>
 
-							{% include "home/_projectsCV.html.twig" %}
+						{% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 0)|sort((a, b) => a.positionOrder <=> b.positionOrder) %}
+							{% include "home/_experienceAndEducationCV.html.twig" %}
+						{% endfor %}
 
-							{% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 1)|sort((a, b) => a.positionOrder <=> b.positionOrder) %}
-								{% include "home/_experienceAndEducationCV.html.twig" %}
-							{% endfor %}
+					</section>
 
-						</section>
-
-						<section class="w3-container w3-card w3-white" id="formation">
-							<h2 class="w3-text-grey w3-padding-16">
-								<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Formation</h2>
-
-							{% for experienceAndEducation in experiencesAndEducations|filter(experienceAndEducation => experienceAndEducation.xpOrEducation == 0)|sort((a, b) => a.positionOrder <=> b.positionOrder) %}
-								{% include "home/_experienceAndEducationCV.html.twig" %}
-							{% endfor %}
-
-						</section>
-
-						<!-- End Right Column -->
-					</article>
-					<!-- End Grid -->
-				</div>
+					<!-- End Right Column -->
+				</article>
+				<!-- End Grid -->
 
 				<!-- End Page Container -->
-			</div>
 		</main>
-		{# {% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %} #}
+
 	</body>
 </html>

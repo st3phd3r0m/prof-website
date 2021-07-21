@@ -9,7 +9,18 @@
         "/build/app.js"
       ],
       "css": [
+        "/build/assets_css_normalize_css-assets_css_w3_css.css",
         "/build/app.css"
+      ]
+    },
+    "pdf": {
+      "js": [
+        "/build/runtime.js",
+        "/build/pdf.js"
+      ],
+      "css": [
+        "/build/assets_css_normalize_css-assets_css_w3_css.css",
+        "/build/pdf.css"
       ]
     },
     "adminedit": {

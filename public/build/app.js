@@ -373,7 +373,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ "use strict";
 /******/ 
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ __webpack_require__.O(0, ["vendors-node_modules_core-js_modules_es_array_from_js-node_modules_core-js_modules_es_array_i-18e252","vendors-node_modules_core-js_modules_es_promise_js-node_modules_core-js_modules_web_timers_js","vendors-node_modules_core-js_modules_es_string_replace_js"], () => (__webpack_exec__("./assets/app.js")));
+/******/ __webpack_require__.O(0, ["vendors-node_modules_core-js_modules_es_array_from_js-node_modules_core-js_modules_es_array_i-18e252","vendors-node_modules_core-js_modules_es_promise_js-node_modules_core-js_modules_web_timers_js","vendors-node_modules_core-js_modules_es_string_replace_js","assets_css_normalize_css-assets_css_w3_css"], () => (__webpack_exec__("./assets/app.js")));
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
