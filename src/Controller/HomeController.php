@@ -16,6 +16,7 @@ use Mpdf\Config\FontVariables;
 use Mpdf\HTMLParserMode;
 use Mpdf\Mpdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -155,8 +156,7 @@ class HomeController extends AbstractController
 
         $user = $this->userRepository->findOneBy(['firstname' => 'Stéphane', 'lastname' => 'Derom']);
 
-        // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('home/cv.html.twig', [
+        $data = [
             'skillsAndFeatures' => $skillsAndFeaturesRepository->findAll(),
             'experiencesAndEducations' => $experiencesAndEducationsRepository->findAll(),
             'websites' => $webSitesRepository->findAll(),
@@ -170,7 +170,11 @@ class HomeController extends AbstractController
             'photoAlt' => $userImage->getAlt(),
             'age' => date_diff(new \DateTime('now'), $user->getBornAt())->format('%Y'),
             'content' => $user->getContent()
-        ]);
+        ];
+
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('home/cv.html.twig', $data);
 
         $defaultConfig = (new ConfigVariables())->getDefaults();
         $fontDirs = $defaultConfig['fontDir'];
@@ -198,9 +202,12 @@ class HomeController extends AbstractController
             $mpdf->WriteHTML($stylesheet, HTMLParserMode::HEADER_CSS);
         }
 
-        // $stylesheet = file_get_contents('../assets/css/fontawesome.min.css');
-        // $mpdf->WriteHTML($stylesheet,1);
         $mpdf->WriteHTML($html, HTMLParserMode::DEFAULT_MODE);
-        $mpdf->Output();
+
+        $filename = 'CV_'.$user->getOccupation().'_'.$user->getLastname().'_'.$user->getFirstname().'.pdf';
+        $filename = str_replace('/',' ',$filename);
+        $mpdf->Output($filename, '');
+
+        return new BinaryFileResponse($filename);
     }
 }

@@ -31,6 +31,7 @@ vraisite.text
 /public/images
 /public/.htaccess
 /public/adminlte
+/public/*.pdf
 ###< liip/imagine-bundle ###
 
 ###> symfony/webpack-encore-bundle ###
@@ -40,6 +41,7 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 /images cv/
+
 
 ###> friendsofphp/php-cs-fixer ###
 /.php_cs
