@@ -146,7 +146,7 @@ class HomeController extends AbstractController
         ExperiencesAndEducationsRepository $experiencesAndEducationsRepository,
         WebSitesRepository $webSitesRepository,
         SocialNetworksRepository $socialNetworksRepository
-    ) {
+    ): BinaryFileResponse {
         $userImage = $this->userImagesRepository->findAll()[0];
 
         $path = 'images/'.str_replace('webp', 'jpg', $userImage->getName());

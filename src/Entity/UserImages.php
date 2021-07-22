@@ -17,6 +17,7 @@ class UserImages
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
@@ -45,6 +46,7 @@ class UserImages
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @var \DateTimeImmutable
      */
     private $updated_at;
 

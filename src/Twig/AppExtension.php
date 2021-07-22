@@ -28,7 +28,7 @@ class AppExtension extends AbstractExtension
         return count($this->webSitesRepository->findAll());
     }
 
-    public function fileGetContents($file)
+    public function fileGetContents(string $file): string
     {
         return file_get_contents($file);
     }

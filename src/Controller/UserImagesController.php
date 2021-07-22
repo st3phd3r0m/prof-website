@@ -36,7 +36,7 @@ class UserImagesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userImage->getUpdatedAt(new \DateTime('now'));
+            $userImage->setUpdatedAt(new \DateTimeImmutable('now'));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($userImage);
@@ -76,7 +76,7 @@ class UserImagesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userImage->getUpdatedAt(new \DateTime('now'));
+            $userImage->setUpdatedAt(new \DateTimeImmutable('now'));
 
             $this->getDoctrine()->getManager()->flush();
 
