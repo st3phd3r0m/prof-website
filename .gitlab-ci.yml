@@ -1,0 +1,13 @@
+deploy-master:
+    stage: deploy
+    only:
+    - master
+    before_script:
+    - apt-get update -qy
+    - apt-get install -y lftp
+    script:
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - cat $KNOWN_HOST > ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - lftp sftp://$IDENTIFIANT:$MOT_DE_PASSE@$NOM_HOTE -e "mirror -R -x adminlte -x bundles -x images -x media -x .htaccess public/ web-developer/public/; mirror -R -x DataFixtures src/ web-developer/src/; mirror -R templates/ web-developer/templates/; mirror -R translations/ web-developer/translations/; rm -r web-developer/var/; quit"
