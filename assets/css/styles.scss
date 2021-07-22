@@ -9,8 +9,6 @@
     font-style: normal;
 }
 
-
-
 body {
     margin: 0;
     font-family: abelregular;
@@ -46,7 +44,12 @@ body {
             p {
                 font-style: italic;
             }
+            max-height: 100vh;
+            width: 90%;
 
+            @media screen and (min-width : 601px) {
+                width: 75%;
+            }
         }
 
         nav {
