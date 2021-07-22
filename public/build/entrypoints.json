@@ -2,41 +2,39 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_modules_es_array_from_js-node_modules_core-js_modules_es_array_i-18e252.js",
-        "/build/vendors-node_modules_core-js_modules_es_promise_js-node_modules_core-js_modules_web_timers_js.js",
-        "/build/vendors-node_modules_core-js_modules_es_string_replace_js.js",
-        "/build/app.js"
+        "/build/runtime.40ccedc1.js",
+        "/build/710.033eca89.js",
+        "/build/408.d608f29c.js",
+        "/build/app.c2b4f2a0.js"
       ],
       "css": [
-        "/build/assets_css_normalize_css-assets_css_w3_css.css",
-        "/build/app.css"
+        "/build/430.2e93ad92.css",
+        "/build/app.c2c47a45.css"
       ]
     },
     "pdf": {
       "js": [
-        "/build/runtime.js",
-        "/build/pdf.js"
+        "/build/runtime.40ccedc1.js",
+        "/build/pdf.0ef25e85.js"
       ],
       "css": [
-        "/build/assets_css_normalize_css-assets_css_w3_css.css",
-        "/build/pdf.css"
+        "/build/430.2e93ad92.css",
+        "/build/pdf.e44add8f.css"
       ]
     },
     "adminedit": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_modules_es_array_from_js-node_modules_core-js_modules_es_array_i-18e252.js",
-        "/build/vendors-node_modules_core-js_modules_es_string_replace_js.js",
-        "/build/adminedit.js"
+        "/build/runtime.40ccedc1.js",
+        "/build/710.033eca89.js",
+        "/build/adminedit.6dd0d75e.js"
       ]
     },
     "adminDeleteCourriels": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_modules_es_array_from_js-node_modules_core-js_modules_es_array_i-18e252.js",
-        "/build/vendors-node_modules_core-js_modules_es_promise_js-node_modules_core-js_modules_web_timers_js.js",
-        "/build/adminDeleteCourriels.js"
+        "/build/runtime.40ccedc1.js",
+        "/build/710.033eca89.js",
+        "/build/408.d608f29c.js",
+        "/build/adminDeleteCourriels.09f49700.js"
       ]
     }
   }
