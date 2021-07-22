@@ -183,7 +183,7 @@ class HomeController extends AbstractController
 
         $mpdf = new Mpdf([
             'fontDir' => array_merge($fontDirs, [
-                dirname(__DIR__, 2).'/assets/css/',
+                dirname(__DIR__, 2).'/public/fonts/',
             ]),
             'fontdata' => $fontData + [
                 'fontawesome' => [
