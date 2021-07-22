@@ -14,60 +14,70 @@ class ExperiencesAndEducations
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
      * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $what;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *
      * @var string
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @var string
      */
     private $work_place;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @var string
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @var string
      */
     private $url_work_place;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     *
      * @var \DateTimeInterface
      */
     private $start_date;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     *
      * @var \DateTimeInterface
      */
     private $end_date;
 
     /**
      * @ORM\Column(type="integer")
+     *
      * @var int
      */
     private $position_order;
 
     /**
      * @ORM\Column(type="integer")
+     *
      * @var int
      */
     private $xpOrEducation;

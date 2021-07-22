@@ -16,10 +16,10 @@ use Symfony\Component\Validator\Constraints\Url;
 class SocialNetworksType extends AbstractType
 {
     /**
-     * Undocumented function
+     * Undocumented function.
      *
-     * @param FormBuilderInterface $builder
      * @param array<string, mixed> $options
+     *
      * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -62,7 +62,7 @@ class SocialNetworksType extends AbstractType
                 'choices' => [
                     'Les deux' => 0,
                     'Sur le cv' => 1,
-                    'Sur le site' => 2
+                    'Sur le site' => 2,
                 ],
             ])
         ;

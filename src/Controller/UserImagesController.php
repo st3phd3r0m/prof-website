@@ -43,7 +43,7 @@ class UserImagesController extends AbstractController
             $entityManager->flush();
 
             $image = imagecreatefromwebp('images/'.$userImage->getName());
-            imagejpeg($image, 'images/'.str_replace('webp','jpg', $userImage->getName()), 100);
+            imagejpeg($image, 'images/'.str_replace('webp', 'jpg', $userImage->getName()), 100);
 
             return $this->redirectToRoute('user_images_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -78,13 +78,12 @@ class UserImagesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userImage->getUpdatedAt(new \DateTime('now'));
 
-
             $this->getDoctrine()->getManager()->flush();
 
             $image = imagecreatefromwebp('images/'.$userImage->getName());
-            imagejpeg($image, 'images/'.str_replace('webp','jpg', $userImage->getName()), 100);
+            imagejpeg($image, 'images/'.str_replace('webp', 'jpg', $userImage->getName()), 100);
 
-            $oldImage = '../public/images/'.str_replace('webp','jpg', $oldImage);
+            $oldImage = '../public/images/'.str_replace('webp', 'jpg', $oldImage);
 
             //On supprime la miniature correspondante à l'image
             if ($filesystem->exists($oldImage)) {
@@ -113,8 +112,7 @@ class UserImagesController extends AbstractController
     public function delete(Request $request, UserImages $userImage, Filesystem $filesystem): Response
     {
         if ($this->isCsrfTokenValid('delete'.$userImage->getId(), $request->request->get('_token'))) {
-
-            $oldImage = '../public/images/'.str_replace('webp','jpg', $userImage->getName());
+            $oldImage = '../public/images/'.str_replace('webp', 'jpg', $userImage->getName());
 
             //On supprime la miniature correspondante à l'image
             if ($filesystem->exists($oldImage)) {

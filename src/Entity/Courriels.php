@@ -14,36 +14,42 @@ class Courriels
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
      * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $mail_from;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $subject;
 
     /**
      * @ORM\Column(type="text")
+     *
      * @var string
      */
     private $message;
 
     /**
      * @ORM\Column(type="datetime")
+     *
      * @var \DateTimeInterface
      */
     private $sent_at;

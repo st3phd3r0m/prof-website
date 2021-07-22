@@ -6,6 +6,7 @@ use App\Repository\UserImagesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 /**
  * @ORM\Entity(repositoryClass=UserImagesRepository::class)
  * @Vich\Uploadable
@@ -21,12 +22,14 @@ class UserImages
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @var string
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @var string
      */
     private $alt;
@@ -74,7 +77,7 @@ class UserImages
         return $this;
     }
 
-        /**
+    /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
      * of 'UploadedFile' is injected into this setter to trigger the update. If this
      * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
@@ -98,9 +101,7 @@ class UserImages
     }
 
     /**
-     * Undocumented function
-     *
-     * @return string|null
+     * Undocumented function.
      */
     public function getAlt(): ?string
     {
@@ -108,10 +109,7 @@ class UserImages
     }
 
     /**
-     * Undocumented function
-     *
-     * @param string|null $alt
-     * @return self
+     * Undocumented function.
      */
     public function setAlt(?string $alt): self
     {

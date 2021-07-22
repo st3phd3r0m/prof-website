@@ -30,6 +30,6 @@ class AppExtension extends AbstractExtension
 
     public function fileGetContents($file)
     {
-      return file_get_contents($file);
+        return file_get_contents($file);
     }
 }

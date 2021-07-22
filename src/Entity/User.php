@@ -15,48 +15,56 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
      * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=100)
+     *
      * @var string
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=100)
+     *
      * @var string
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $occupation;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     *
      * @var string
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     *
      * @var array<int, string>
      */
     private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @var string
      */
     private $location;
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
+     *
      * @var string
      */
     private $phone;
@@ -69,6 +77,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *
      * @var string
      */
     private $content;
@@ -143,6 +152,7 @@ class User implements UserInterface
 
     /**
      * @see UserInterface
+     *
      * @return array<int, string>
      */
     public function getRoles(): array
@@ -155,10 +165,9 @@ class User implements UserInterface
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
      * @param array<int, string> $roles
-     * @return self
      */
     public function setRoles(array $roles): self
     {
@@ -246,5 +255,4 @@ class User implements UserInterface
 
         return $this;
     }
-    
 }

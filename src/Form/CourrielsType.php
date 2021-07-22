@@ -19,9 +19,8 @@ use Symfony\Component\Validator\Constraints\Regex;
 class CourrielsType extends AbstractType
 {
     /**
-     *
-     * @param FormBuilderInterface $builder
      * @param array<string, mixed> $options
+     *
      * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options)

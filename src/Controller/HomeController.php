@@ -88,7 +88,7 @@ class HomeController extends AbstractController
             'publications' => $publicationsRepository->findAll(),
             'websites' => $webSitesRepository->findAll(),
             'socialNetworks' => $socialNetworksRepository->findAll(),
-            'me' => $user->getFirstname() . ' ' . $user->getLastname(),
+            'me' => $user->getFirstname().' '.$user->getLastname(),
             'Adress' => $user->getLocation(),
             'Email' => $user->getEmail(),
             'occupation' => $user->getOccupation(),
@@ -149,10 +149,10 @@ class HomeController extends AbstractController
     ) {
         $userImage = $this->userImagesRepository->findAll()[0];
 
-        $path = 'images/' . str_replace('webp', 'jpg', $userImage->getName());
+        $path = 'images/'.str_replace('webp', 'jpg', $userImage->getName());
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
-        $photo = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        $photo = 'data:image/'.$type.';base64,'.base64_encode($data);
 
         $user = $this->userRepository->findOneBy(['firstname' => 'Stéphane', 'lastname' => 'Derom']);
 
@@ -161,7 +161,7 @@ class HomeController extends AbstractController
             'experiencesAndEducations' => $experiencesAndEducationsRepository->findAll(),
             'websites' => $webSitesRepository->findAll(),
             'socialNetworks' => $socialNetworksRepository->findAll(),
-            'me' => $user->getFirstname() . ' ' . $user->getLastname(),
+            'me' => $user->getFirstname().' '.$user->getLastname(),
             'Adress' => $user->getLocation(),
             'Email' => $user->getEmail(),
             'Phone' => $user->getPhone(),
@@ -169,9 +169,8 @@ class HomeController extends AbstractController
             'photo' => $photo,
             'photoAlt' => $userImage->getAlt(),
             'age' => date_diff(new \DateTime('now'), $user->getBornAt())->format('%Y'),
-            'content' => $user->getContent()
+            'content' => $user->getContent(),
         ];
-
 
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('home/cv.html.twig', $data);
@@ -188,16 +187,16 @@ class HomeController extends AbstractController
             ]),
             'fontdata' => $fontData + [
                 'fontawesome' => [
-                    'R' => 'fontawesome-webfont.ttf'
+                    'R' => 'fontawesome-webfont.ttf',
                 ],
             ],
             'margin_top' => 5,
             'margin_left' => 5,
             'margin_right' => 2,
-            'mirrorMargins' => true
+            'mirrorMargins' => true,
         ]);
-        $mpdf->allow_charset_conversion = true; 
-        foreach ($this->entrypointLookup->getCssFiles('pdf') as  $value) {
+        $mpdf->allow_charset_conversion = true;
+        foreach ($this->entrypointLookup->getCssFiles('pdf') as $value) {
             $stylesheet = file_get_contents('../public/'.$value);
             $mpdf->WriteHTML($stylesheet, HTMLParserMode::HEADER_CSS);
         }
@@ -205,7 +204,7 @@ class HomeController extends AbstractController
         $mpdf->WriteHTML($html, HTMLParserMode::DEFAULT_MODE);
 
         $filename = 'CV_'.$user->getOccupation().'_'.$user->getLastname().'_'.$user->getFirstname().'.pdf';
-        $filename = str_replace('/',' ',$filename);
+        $filename = str_replace('/', ' ', $filename);
         $mpdf->Output($filename, '');
 
         return new BinaryFileResponse($filename);

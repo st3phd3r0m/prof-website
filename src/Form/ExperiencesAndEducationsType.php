@@ -18,10 +18,10 @@ use Symfony\Component\Validator\Constraints\Url;
 class ExperiencesAndEducationsType extends AbstractType
 {
     /**
-     * Undocumented function
+     * Undocumented function.
      *
-     * @param FormBuilderInterface $builder
      * @param array<string, mixed> $options
+     *
      * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options)

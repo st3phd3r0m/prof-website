@@ -15,18 +15,16 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
-use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserType extends AbstractType
 {
     /**
-     * Undocumented function
+     * Undocumented function.
      *
-     * @param FormBuilderInterface $builder
      * @param array<string, mixed> $options
+     *
      * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options)

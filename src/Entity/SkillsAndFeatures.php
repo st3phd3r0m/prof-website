@@ -14,36 +14,42 @@ class SkillsAndFeatures
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     *
      * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $what;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @var string
      */
     private $whatmore;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     *
      * @var int
      */
     private $rate;
 
     /**
      * @ORM\Column(type="json", nullable=true)
+     *
      * @var array<int, string>
      */
     private $keywords = [];
 
     /**
      * @ORM\Column(type="integer")
+     *
      * @var int
      */
     private $skill_or_feature;
@@ -90,7 +96,7 @@ class SkillsAndFeatures
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
      * @return array<int, string>|null
      */
@@ -100,10 +106,9 @@ class SkillsAndFeatures
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
      * @param array<int, string>|null $keywords
-     * @return self
      */
     public function setKeywords(?array $keywords): self
     {

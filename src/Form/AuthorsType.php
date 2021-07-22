@@ -13,10 +13,10 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class AuthorsType extends AbstractType
 {
     /**
-     * Undocumented function
+     * Undocumented function.
      *
-     * @param FormBuilderInterface $builder
      * @param array<string, mixed> $options
+     *
      * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options)

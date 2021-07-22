@@ -21,10 +21,10 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 class PublicationsType extends AbstractType
 {
     /**
-     * Undocumented function
+     * Undocumented function.
      *
-     * @param FormBuilderInterface $builder
      * @param array<string, mixed> $options
+     *
      * @return void
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
