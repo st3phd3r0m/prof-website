@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\WebSites;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -70,6 +71,16 @@ class WebSitesType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez saisir un texte.',
+                    ]),
+                ],
+            ])
+            ->add('position_order', NumberType::class, [
+                'required' => true,
+                'label' => 'Ordre d\'apparition',
+                'html5' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez saisir un chiffre',
                     ]),
                 ],
             ])

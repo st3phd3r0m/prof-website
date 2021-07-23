@@ -73,6 +73,13 @@ class WebSites
      */
     private $alt;
 
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var int
+     */
+    private $position_order;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -169,6 +176,18 @@ class WebSites
     public function setAlt(?string $alt): self
     {
         $this->alt = $alt;
+
+        return $this;
+    }
+
+    public function getPositionOrder(): ?int
+    {
+        return $this->position_order;
+    }
+
+    public function setPositionOrder(int $position_order): self
+    {
+        $this->position_order = $position_order;
 
         return $this;
     }

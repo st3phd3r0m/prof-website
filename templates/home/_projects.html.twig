@@ -1,5 +1,5 @@
 <div id="websites">
-	{% for website in websites %}
+	{% for website in websites|sort((a, b) => a.positionOrder <=> b.positionOrder) %}
 		<figure>
             <i class="las la-external-link-alt w3-text-dark-gray"></i>
 			<a href="{{ website.url }}" title="{{ website.alt }}" target="_blank">

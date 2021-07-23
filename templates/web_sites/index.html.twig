@@ -38,6 +38,7 @@
                         <th>Image</th>
                         <th>Updated_at</th>
                         <th>Alt</th>
+                        <th>Order</th>
                         <th>actions</th>
                     </tr>
                 </thead>
@@ -53,6 +54,7 @@
                         </td>
                         <td>{{ web_site.updatedAt ? web_site.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                         <td>{{ web_site.alt }}</td>
+                        <td>{{ web_site.positionOrder }}</td>
                         <td>
                             <a href="{{ path('web_sites_show', {'id': web_site.id}) }}">show</a>
                             <a href="{{ path('web_sites_edit', {'id': web_site.id}) }}">edit</a>
