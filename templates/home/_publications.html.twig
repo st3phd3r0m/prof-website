@@ -1,0 +1,21 @@
+<div id="pub">
+{% for publication in publications %}
+	<a href="{{ publication.url }}" title="Link to {{ publication.editor }} website" target="_blank">
+		<i class="las la-external-link-alt"></i>
+		<figure>
+			<img src="{{ asset('images/'~ publication.image )|imagine_filter('min300') }}" alt="{{ publication.alt }}">
+			<div>
+				<h2>
+					{{ publication.title }}
+				</h2>
+				<p>
+					{% for author in publication.authors %}
+						{{ author.name }}
+						{{ loop.last ? '' : ',' }}
+					{% endfor %}
+				</p>
+			</div>
+		</figure>
+	</a>
+{% endfor %}
+</div>

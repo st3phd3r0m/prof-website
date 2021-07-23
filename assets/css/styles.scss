@@ -224,7 +224,7 @@ body {
 
             padding: inherit;
 
-            #websites {
+            #websites, #pub {
                 .la-external-link-alt {
                     float: right;
                 }
@@ -233,7 +233,9 @@ body {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 align-items: center;
                 gap: 15px;
+            }
 
+            #websites{
                 >figure {
                     width: 200px;
                     margin: 0;
@@ -295,6 +297,69 @@ body {
                     }
                 }
             }
+
+
+            #pub {
+                >a {
+                    width: 200px;
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    text-decoration: none;
+                    border-radius: 10px 10px 10px 10px;
+
+                    >figure {
+
+                        width: 100%;
+                        margin: 0;
+                        border-radius: 10px 10px 10px 10px;
+
+                        >img {
+                            box-sizing: border-box;
+                            width: 100%;
+                            margin: 0;
+                            border-radius: 10px 10px 0 0;
+                        }
+
+                        >div {
+                            margin: 0;
+                            background-color: rgba(0, 0, 0, 0.6);
+                            color: rgba(255, 255, 255, 0.85);
+                            border-radius: 0 0 10px 10px;
+
+                            h2 {
+                                margin: 0;
+                                padding: 10px;
+                                font-size: 1.1rem;
+                                font-weight: 400;
+                                line-height: 1.4rem;
+                                color:rgba(255, 255, 255, 0.85);
+                                text-align: unset;
+                            }
+
+                            p {
+                                // display: none;
+                                margin: 0;
+                                padding: 0 10px 10px 10px;
+                                font-size: 1rem;
+                                line-height: 1.2rem;
+                                font-style: italic;
+                                vertical-align: sub;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        position: relative;
+                        box-shadow: 0 0 30px lightseagreen;
+                        width: 220px;
+                        right: 10px;
+                    }
+
+                }
+            }
+
+            
         }
 
         #contact {
