@@ -2,13 +2,8 @@
 		{% for website in websites|sort((a, b) => a.positionOrder <=> b.positionOrder) %}
 		<li>
 			<span class="w3-text-teal">{{ website.name|raw }}</span>
-			{% if website.url %}
-				Site : {{ website.url|replace({'http://': '','https://': ''}) }}
-			{% endif %}
-			{{ (website.repoUrl and website.repoUrl)? ';' : '' }}
-			{% if website.repoUrl %}
-				Dépôt : {{ website.repoUrl|replace({'http://': '','https://': ''}) }}
-			{% endif %}
+			{{ (website.url)? 'Site:' : '' }}{{ website.url|replace({'http://': '','https://': ''}) }}{{ (website.repoUrl and website.repoUrl)? ';' : '' }}
+			{{ (website.repoUrl)? 'Dépôt Github:' : '' }}{{ website.repoUrl|replace({'http://': '','https://': '', 'github.com/': ''}) }}
 		</li>
 	{% endfor %}
 </ul>
