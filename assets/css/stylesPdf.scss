@@ -86,9 +86,12 @@ body {
             }
 
             #websitesCV {
+                margin:0;
+                padding: 0;
                 li{
+                    padding: 0;
+                    margin: 0 0 10px 0;
                     font-size: 0.9rem;
-                    margin-bottom: 10px;
                 }
             }
 
