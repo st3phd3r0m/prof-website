@@ -142,10 +142,6 @@ class HomeController extends AbstractController
      * @Route("/download/cv", name="download_cv", methods={"GET"})
      */
     public function cvDownload(
-        SkillsAndFeaturesRepository $skillsAndFeaturesRepository,
-        ExperiencesAndEducationsRepository $experiencesAndEducationsRepository,
-        WebSitesRepository $webSitesRepository,
-        SocialNetworksRepository $socialNetworksRepository
     ): BinaryFileResponse {
         $userImage = $this->userImagesRepository->findAll()[0];
 
