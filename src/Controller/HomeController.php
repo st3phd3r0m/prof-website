@@ -11,10 +11,6 @@ use App\Repository\SocialNetworksRepository;
 use App\Repository\UserImagesRepository;
 use App\Repository\UserRepository;
 use App\Repository\WebSitesRepository;
-use Mpdf\Config\ConfigVariables;
-use Mpdf\Config\FontVariables;
-use Mpdf\HTMLParserMode;
-use Mpdf\Mpdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -141,14 +137,13 @@ class HomeController extends AbstractController
     /**
      * @Route("/download/cv", name="download_cv", methods={"GET"})
      */
-    public function cvDownload(): BinaryFileResponse 
+    public function cvDownload(): BinaryFileResponse
     {
-
         $user = $this->userRepository->findOneBy(['firstname' => 'Stéphane', 'lastname' => 'Derom']);
 
         $filename = 'CV_'.$user->getOccupation().'_'.$user->getLastname().'_'.$user->getFirstname().'.pdf';
         $filename = str_replace('/', ' ', $filename);
-        
+
         return new BinaryFileResponse($filename);
     }
 }

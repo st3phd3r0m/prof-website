@@ -21,11 +21,10 @@ use Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface;
 
 class AdminController extends AbstractController
 {
-
     private SkillsAndFeaturesRepository $skillsAndFeaturesRepository;
     private ExperiencesAndEducationsRepository $experiencesAndEducationsRepository;
     private WebSitesRepository $webSitesRepository;
-    private SocialNetworksRepository $socialNetworksRepository; 
+    private SocialNetworksRepository $socialNetworksRepository;
     private UserImagesRepository $userImagesRepository;
     private EntrypointLookupInterface $entrypointLookup;
     private UserRepository $userRepository;
@@ -36,11 +35,12 @@ class AdminController extends AbstractController
         $this->skillsAndFeaturesRepository = $skillsAndFeaturesRepository;
         $this->experiencesAndEducationsRepository = $experiencesAndEducationsRepository;
         $this->webSitesRepository = $webSitesRepository;
-        $this->socialNetworksRepository = $socialNetworksRepository; 
+        $this->socialNetworksRepository = $socialNetworksRepository;
         $this->userImagesRepository = $userImagesRepository;
         $this->entrypointLookup = $entrypointLookup;
         $this->userRepository = $userRepository;
     }
+
     /**
      * @Route("/admin", name="admin")
      */
@@ -57,7 +57,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    public function makePdf(): void 
+    public function makePdf(): void
     {
         $userImage = $this->userImagesRepository->findAll()[0];
 

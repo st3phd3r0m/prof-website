@@ -2,13 +2,12 @@
 
 namespace App\EventSubscriber;
 
-use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\Events;
 use App\Controller\AdminController;
 use App\Entity\Authors;
 use App\Entity\Courriels;
 use App\Entity\Publications;
-use Doctrine\ORM\Event\PostFlushEventArgs;
+use Doctrine\Common\EventSubscriber;
+use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 
 class DatabaseActivitySubscriber implements EventSubscriber
@@ -53,11 +52,10 @@ class DatabaseActivitySubscriber implements EventSubscriber
     {
         $object = $args->getObject();
 
-        if($object instanceof Authors || $object instanceof Courriels || $object instanceof Publications){
+        if ($object instanceof Authors || $object instanceof Courriels || $object instanceof Publications) {
             return;
         }
 
         $this->adminController->makePdf();
     }
-
 }

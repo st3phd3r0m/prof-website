@@ -3,7 +3,7 @@
 {% set currentUrl = url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
 
 {% block head %}
-	<meta name="description" content="Curriculum vitae de Stéphane Derom, Développeur web junior sur Mâcon, Bourgogne-Franche-Comté. Symfony, php, sql, javascript, Bootstrap.">
+	<meta name="description" content="Curriculum vitae de {{ me }}, Développeur web junior sur Mâcon, Bourgogne-Franche-Comté. Symfony, php, sql, javascript, Bootstrap.">
 
 	<script type="application/ld+json">
 		{
@@ -61,7 +61,7 @@
 {% block header %}
 	<div class="w3-text-light-gray">
 		<h1>{{ me }}</h1>
-		<p>{{ occupation}}</p>
+		<p>{{ occupation }}</p>
 		<p>{{ content }}</p>
 		<a href="{{ path('download_cv') }}" target="_blank" title="Télécharger ce CV en pdf">Télécharger ce CV en pdf<i class="las la-external-link-alt"></i></a>
 		<p>
